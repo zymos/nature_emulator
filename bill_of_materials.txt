@@ -1,0 +1,7 @@
+
+Amount	|	Part						|	Cost
+---------------------------------------------------
+1x		|	Rasberry Pi					|	$30
+1x		|	DS3231 RTC Board			|	$10-20
+1x		|	i2c Audio class-D Amplifier	|	$10
+2x		|	Speakers					|	$10
