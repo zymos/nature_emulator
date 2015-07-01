@@ -1,0 +1,640 @@
+
+	# setting user config [AUDIO_DIRECTORY]
+	if not config_user.has_key('AUDIO_DIRECTORY'):
+		if config_missing['AUDIO_DIRECTORY']:
+			print "\t>> Fatal error: config setting [%s] is required" % ('AUDIO_DIRECTORY')
+			sys.exit(1)
+		else:
+			print "\t>> Config: using default for setting [%s]" % ('AUDIO_DIRECTORY')
+			config['AUDIO_DIRECTORY'] = config_default['AUDIO_DIRECTORY']
+	elif config_user['AUDIO_DIRECTORY'] == "":
+			print "\t>> Fatal error: config setting [%s] is missing and required" % ('AUDIO_DIRECTORY')
+			sys.exit(1)
+	else:
+		config['AUDIO_DIRECTORY'] = config_user['AUDIO_DIRECTORY']
+		config_missing['AUDIO_DIRECTORY'] = False
+	if DEBUG:
+		if config_missing['AUDIO_DIRECTORY']:
+			print "\t>> user config [%s] is missing or blank" % ('AUDIO_DIRECTORY')
+		else:
+			print "\t>> user config [%s] is set to [%s]" % ('AUDIO_DIRECTORY', config['AUDIO_DIRECTORY'])
+
+	# setting user config [CITY_LOCATION]
+	if not config_user.has_key('CITY_LOCATION'):
+		if config_missing['CITY_LOCATION']:
+			print "\t>> Fatal error: config setting [%s] is required" % ('CITY_LOCATION')
+			sys.exit(1)
+		else:
+			print "\t>> Config: using default for setting [%s]" % ('CITY_LOCATION')
+			config['CITY_LOCATION'] = config_default['CITY_LOCATION']
+	elif config_user['CITY_LOCATION'] == "":
+			print "\t>> Fatal error: config setting [%s] is missing and required" % ('CITY_LOCATION')
+			sys.exit(1)
+	else:
+		config['CITY_LOCATION'] = config_user['CITY_LOCATION']
+		config_missing['CITY_LOCATION'] = False
+	if DEBUG:
+		if config_missing['CITY_LOCATION']:
+			print "\t>> user config [%s] is missing or blank" % ('CITY_LOCATION')
+		else:
+			print "\t>> user config [%s] is set to [%s]" % ('CITY_LOCATION', config['CITY_LOCATION'])
+
+	# setting user config [ENABLE_WIFI]
+	if not config_user.has_key('ENABLE_WIFI'):
+		if config_missing['ENABLE_WIFI']:
+			print "\t>> Fatal error: config setting [%s] is required" % ('ENABLE_WIFI')
+			sys.exit(1)
+		else:
+			print "\t>> Config: using default for setting [%s]" % ('ENABLE_WIFI')
+			config['ENABLE_WIFI'] = config_default['ENABLE_WIFI']
+	elif config_user['ENABLE_WIFI'] == "":
+			print "\t>> Fatal error: config setting [%s] is missing and required" % ('ENABLE_WIFI')
+			sys.exit(1)
+	else:
+		config['ENABLE_WIFI'] = config_user['ENABLE_WIFI']
+		config_missing['ENABLE_WIFI'] = False
+	if DEBUG:
+		if config_missing['ENABLE_WIFI']:
+			print "\t>> user config [%s] is missing or blank" % ('ENABLE_WIFI')
+		else:
+			print "\t>> user config [%s] is set to [%s]" % ('ENABLE_WIFI', config['ENABLE_WIFI'])
+
+	# setting user config [WIFI_ACCESS_POINT]
+	if not config_user.has_key('WIFI_ACCESS_POINT'):
+		if config_missing['WIFI_ACCESS_POINT']:
+			print "\t>> Fatal error: config setting [%s] is required" % ('WIFI_ACCESS_POINT')
+			sys.exit(1)
+		else:
+			print "\t>> Config: using default for setting [%s]" % ('WIFI_ACCESS_POINT')
+			config['WIFI_ACCESS_POINT'] = config_default['WIFI_ACCESS_POINT']
+	elif config_user['WIFI_ACCESS_POINT'] == "":
+			print "\t>> Fatal error: config setting [%s] is missing and required" % ('WIFI_ACCESS_POINT')
+			sys.exit(1)
+	else:
+		config['WIFI_ACCESS_POINT'] = config_user['WIFI_ACCESS_POINT']
+		config_missing['WIFI_ACCESS_POINT'] = False
+	if DEBUG:
+		if config_missing['WIFI_ACCESS_POINT']:
+			print "\t>> user config [%s] is missing or blank" % ('WIFI_ACCESS_POINT')
+		else:
+			print "\t>> user config [%s] is set to [%s]" % ('WIFI_ACCESS_POINT', config['WIFI_ACCESS_POINT'])
+
+	# setting user config [WIFI_PASSWORD]
+	if not config_user.has_key('WIFI_PASSWORD'):
+		if config_missing['WIFI_PASSWORD']:
+			print "\t>> Fatal error: config setting [%s] is required" % ('WIFI_PASSWORD')
+			sys.exit(1)
+		else:
+			print "\t>> Config: using default for setting [%s]" % ('WIFI_PASSWORD')
+			config['WIFI_PASSWORD'] = config_default['WIFI_PASSWORD']
+	elif config_user['WIFI_PASSWORD'] == "":
+			print "\t>> Fatal error: config setting [%s] is missing and required" % ('WIFI_PASSWORD')
+			sys.exit(1)
+	else:
+		config['WIFI_PASSWORD'] = config_user['WIFI_PASSWORD']
+		config_missing['WIFI_PASSWORD'] = False
+	if DEBUG:
+		if config_missing['WIFI_PASSWORD']:
+			print "\t>> user config [%s] is missing or blank" % ('WIFI_PASSWORD')
+		else:
+			print "\t>> user config [%s] is set to [%s]" % ('WIFI_PASSWORD', config['WIFI_PASSWORD'])
+
+	# setting user config [BACKGROUND_SOUND_ENABLE]
+	if not config_user.has_key('BACKGROUND_SOUND_ENABLE'):
+		if config_missing['BACKGROUND_SOUND_ENABLE']:
+			print "\t>> Fatal error: config setting [%s] is required" % ('BACKGROUND_SOUND_ENABLE')
+			sys.exit(1)
+		else:
+			print "\t>> Config: using default for setting [%s]" % ('BACKGROUND_SOUND_ENABLE')
+			config['BACKGROUND_SOUND_ENABLE'] = config_default['BACKGROUND_SOUND_ENABLE']
+	elif config_user['BACKGROUND_SOUND_ENABLE'] == "":
+			print "\t>> Fatal error: config setting [%s] is missing and required" % ('BACKGROUND_SOUND_ENABLE')
+			sys.exit(1)
+	else:
+		config['BACKGROUND_SOUND_ENABLE'] = config_user['BACKGROUND_SOUND_ENABLE']
+		config_missing['BACKGROUND_SOUND_ENABLE'] = False
+	if DEBUG:
+		if config_missing['BACKGROUND_SOUND_ENABLE']:
+			print "\t>> user config [%s] is missing or blank" % ('BACKGROUND_SOUND_ENABLE')
+		else:
+			print "\t>> user config [%s] is set to [%s]" % ('BACKGROUND_SOUND_ENABLE', config['BACKGROUND_SOUND_ENABLE'])
+
+	# setting user config [BACKGROUND_SOUND_FILENAME]
+	if not config_user.has_key('BACKGROUND_SOUND_FILENAME'):
+		if config_missing['BACKGROUND_SOUND_FILENAME']:
+			print "\t>> Fatal error: config setting [%s] is required" % ('BACKGROUND_SOUND_FILENAME')
+			sys.exit(1)
+		else:
+			print "\t>> Config: using default for setting [%s]" % ('BACKGROUND_SOUND_FILENAME')
+			config['BACKGROUND_SOUND_FILENAME'] = config_default['BACKGROUND_SOUND_FILENAME']
+	elif config_user['BACKGROUND_SOUND_FILENAME'] == "":
+			print "\t>> Fatal error: config setting [%s] is missing and required" % ('BACKGROUND_SOUND_FILENAME')
+			sys.exit(1)
+	else:
+		config['BACKGROUND_SOUND_FILENAME'] = config_user['BACKGROUND_SOUND_FILENAME']
+		config_missing['BACKGROUND_SOUND_FILENAME'] = False
+	if DEBUG:
+		if config_missing['BACKGROUND_SOUND_FILENAME']:
+			print "\t>> user config [%s] is missing or blank" % ('BACKGROUND_SOUND_FILENAME')
+		else:
+			print "\t>> user config [%s] is set to [%s]" % ('BACKGROUND_SOUND_FILENAME', config['BACKGROUND_SOUND_FILENAME'])
+
+	# setting user config [BACKGROUND_SOUND_VOLUME]
+	if not config_user.has_key('BACKGROUND_SOUND_VOLUME'):
+		if config_missing['BACKGROUND_SOUND_VOLUME']:
+			print "\t>> Fatal error: config setting [%s] is required" % ('BACKGROUND_SOUND_VOLUME')
+			sys.exit(1)
+		else:
+			print "\t>> Config: using default for setting [%s]" % ('BACKGROUND_SOUND_VOLUME')
+			config['BACKGROUND_SOUND_VOLUME'] = config_default['BACKGROUND_SOUND_VOLUME']
+	elif config_user['BACKGROUND_SOUND_VOLUME'] == "":
+			print "\t>> Fatal error: config setting [%s] is missing and required" % ('BACKGROUND_SOUND_VOLUME')
+			sys.exit(1)
+	else:
+		config['BACKGROUND_SOUND_VOLUME'] = config_user['BACKGROUND_SOUND_VOLUME']
+		config_missing['BACKGROUND_SOUND_VOLUME'] = False
+	if DEBUG:
+		if config_missing['BACKGROUND_SOUND_VOLUME']:
+			print "\t>> user config [%s] is missing or blank" % ('BACKGROUND_SOUND_VOLUME')
+		else:
+			print "\t>> user config [%s] is set to [%s]" % ('BACKGROUND_SOUND_VOLUME', config['BACKGROUND_SOUND_VOLUME'])
+
+	# setting user config [ENABLE_FIXED_TIME_MODE]
+	if not config_user.has_key('ENABLE_FIXED_TIME_MODE'):
+		if config_missing['ENABLE_FIXED_TIME_MODE']:
+			print "\t>> Fatal error: config setting [%s] is required" % ('ENABLE_FIXED_TIME_MODE')
+			sys.exit(1)
+		else:
+			print "\t>> Config: using default for setting [%s]" % ('ENABLE_FIXED_TIME_MODE')
+			config['ENABLE_FIXED_TIME_MODE'] = config_default['ENABLE_FIXED_TIME_MODE']
+	elif config_user['ENABLE_FIXED_TIME_MODE'] == "":
+			print "\t>> Fatal error: config setting [%s] is missing and required" % ('ENABLE_FIXED_TIME_MODE')
+			sys.exit(1)
+	else:
+		config['ENABLE_FIXED_TIME_MODE'] = config_user['ENABLE_FIXED_TIME_MODE']
+		config_missing['ENABLE_FIXED_TIME_MODE'] = False
+	if DEBUG:
+		if config_missing['ENABLE_FIXED_TIME_MODE']:
+			print "\t>> user config [%s] is missing or blank" % ('ENABLE_FIXED_TIME_MODE')
+		else:
+			print "\t>> user config [%s] is set to [%s]" % ('ENABLE_FIXED_TIME_MODE', config['ENABLE_FIXED_TIME_MODE'])
+
+	# setting user config [START_OF_THE_DAY_MODE]
+	if not config_user.has_key('START_OF_THE_DAY_MODE'):
+		if config_missing['START_OF_THE_DAY_MODE']:
+			print "\t>> Fatal error: config setting [%s] is required" % ('START_OF_THE_DAY_MODE')
+			sys.exit(1)
+		else:
+			print "\t>> Config: using default for setting [%s]" % ('START_OF_THE_DAY_MODE')
+			config['START_OF_THE_DAY_MODE'] = config_default['START_OF_THE_DAY_MODE']
+	elif config_user['START_OF_THE_DAY_MODE'] == "":
+			print "\t>> Fatal error: config setting [%s] is missing and required" % ('START_OF_THE_DAY_MODE')
+			sys.exit(1)
+	else:
+		config['START_OF_THE_DAY_MODE'] = config_user['START_OF_THE_DAY_MODE']
+		config_missing['START_OF_THE_DAY_MODE'] = False
+	if DEBUG:
+		if config_missing['START_OF_THE_DAY_MODE']:
+			print "\t>> user config [%s] is missing or blank" % ('START_OF_THE_DAY_MODE')
+		else:
+			print "\t>> user config [%s] is set to [%s]" % ('START_OF_THE_DAY_MODE', config['START_OF_THE_DAY_MODE'])
+
+	# setting user config [END_OF_THE_DAY_MODE]
+	if not config_user.has_key('END_OF_THE_DAY_MODE'):
+		if config_missing['END_OF_THE_DAY_MODE']:
+			print "\t>> Fatal error: config setting [%s] is required" % ('END_OF_THE_DAY_MODE')
+			sys.exit(1)
+		else:
+			print "\t>> Config: using default for setting [%s]" % ('END_OF_THE_DAY_MODE')
+			config['END_OF_THE_DAY_MODE'] = config_default['END_OF_THE_DAY_MODE']
+	elif config_user['END_OF_THE_DAY_MODE'] == "":
+			print "\t>> Fatal error: config setting [%s] is missing and required" % ('END_OF_THE_DAY_MODE')
+			sys.exit(1)
+	else:
+		config['END_OF_THE_DAY_MODE'] = config_user['END_OF_THE_DAY_MODE']
+		config_missing['END_OF_THE_DAY_MODE'] = False
+	if DEBUG:
+		if config_missing['END_OF_THE_DAY_MODE']:
+			print "\t>> user config [%s] is missing or blank" % ('END_OF_THE_DAY_MODE')
+		else:
+			print "\t>> user config [%s] is set to [%s]" % ('END_OF_THE_DAY_MODE', config['END_OF_THE_DAY_MODE'])
+
+	# setting user config [ENABLE_FIXED_LATENIGHT]
+	if not config_user.has_key('ENABLE_FIXED_LATENIGHT'):
+		if config_missing['ENABLE_FIXED_LATENIGHT']:
+			print "\t>> Fatal error: config setting [%s] is required" % ('ENABLE_FIXED_LATENIGHT')
+			sys.exit(1)
+		else:
+			print "\t>> Config: using default for setting [%s]" % ('ENABLE_FIXED_LATENIGHT')
+			config['ENABLE_FIXED_LATENIGHT'] = config_default['ENABLE_FIXED_LATENIGHT']
+	elif config_user['ENABLE_FIXED_LATENIGHT'] == "":
+			print "\t>> Fatal error: config setting [%s] is missing and required" % ('ENABLE_FIXED_LATENIGHT')
+			sys.exit(1)
+	else:
+		config['ENABLE_FIXED_LATENIGHT'] = config_user['ENABLE_FIXED_LATENIGHT']
+		config_missing['ENABLE_FIXED_LATENIGHT'] = False
+	if DEBUG:
+		if config_missing['ENABLE_FIXED_LATENIGHT']:
+			print "\t>> user config [%s] is missing or blank" % ('ENABLE_FIXED_LATENIGHT')
+		else:
+			print "\t>> user config [%s] is set to [%s]" % ('ENABLE_FIXED_LATENIGHT', config['ENABLE_FIXED_LATENIGHT'])
+
+	# setting user config [FIXED_TIME_DAWN]
+	if not config_user.has_key('FIXED_TIME_DAWN'):
+		if config_missing['FIXED_TIME_DAWN']:
+			print "\t>> Fatal error: config setting [%s] is required" % ('FIXED_TIME_DAWN')
+			sys.exit(1)
+		else:
+			print "\t>> Config: using default for setting [%s]" % ('FIXED_TIME_DAWN')
+			config['FIXED_TIME_DAWN'] = config_default['FIXED_TIME_DAWN']
+	elif config_user['FIXED_TIME_DAWN'] == "":
+			print "\t>> Fatal error: config setting [%s] is missing and required" % ('FIXED_TIME_DAWN')
+			sys.exit(1)
+	else:
+		config['FIXED_TIME_DAWN'] = config_user['FIXED_TIME_DAWN']
+		config_missing['FIXED_TIME_DAWN'] = False
+	if DEBUG:
+		if config_missing['FIXED_TIME_DAWN']:
+			print "\t>> user config [%s] is missing or blank" % ('FIXED_TIME_DAWN')
+		else:
+			print "\t>> user config [%s] is set to [%s]" % ('FIXED_TIME_DAWN', config['FIXED_TIME_DAWN'])
+
+	# setting user config [FIXED_TIME_SUNRISE]
+	if not config_user.has_key('FIXED_TIME_SUNRISE'):
+		if config_missing['FIXED_TIME_SUNRISE']:
+			print "\t>> Fatal error: config setting [%s] is required" % ('FIXED_TIME_SUNRISE')
+			sys.exit(1)
+		else:
+			print "\t>> Config: using default for setting [%s]" % ('FIXED_TIME_SUNRISE')
+			config['FIXED_TIME_SUNRISE'] = config_default['FIXED_TIME_SUNRISE']
+	elif config_user['FIXED_TIME_SUNRISE'] == "":
+			print "\t>> Fatal error: config setting [%s] is missing and required" % ('FIXED_TIME_SUNRISE')
+			sys.exit(1)
+	else:
+		config['FIXED_TIME_SUNRISE'] = config_user['FIXED_TIME_SUNRISE']
+		config_missing['FIXED_TIME_SUNRISE'] = False
+	if DEBUG:
+		if config_missing['FIXED_TIME_SUNRISE']:
+			print "\t>> user config [%s] is missing or blank" % ('FIXED_TIME_SUNRISE')
+		else:
+			print "\t>> user config [%s] is set to [%s]" % ('FIXED_TIME_SUNRISE', config['FIXED_TIME_SUNRISE'])
+
+	# setting user config [FIXED_TIME_MIDMORNING]
+	if not config_user.has_key('FIXED_TIME_MIDMORNING'):
+		if config_missing['FIXED_TIME_MIDMORNING']:
+			print "\t>> Fatal error: config setting [%s] is required" % ('FIXED_TIME_MIDMORNING')
+			sys.exit(1)
+		else:
+			print "\t>> Config: using default for setting [%s]" % ('FIXED_TIME_MIDMORNING')
+			config['FIXED_TIME_MIDMORNING'] = config_default['FIXED_TIME_MIDMORNING']
+	elif config_user['FIXED_TIME_MIDMORNING'] == "":
+			print "\t>> Fatal error: config setting [%s] is missing and required" % ('FIXED_TIME_MIDMORNING')
+			sys.exit(1)
+	else:
+		config['FIXED_TIME_MIDMORNING'] = config_user['FIXED_TIME_MIDMORNING']
+		config_missing['FIXED_TIME_MIDMORNING'] = False
+	if DEBUG:
+		if config_missing['FIXED_TIME_MIDMORNING']:
+			print "\t>> user config [%s] is missing or blank" % ('FIXED_TIME_MIDMORNING')
+		else:
+			print "\t>> user config [%s] is set to [%s]" % ('FIXED_TIME_MIDMORNING', config['FIXED_TIME_MIDMORNING'])
+
+	# setting user config [FIXED_TIME_MIDAFTERNOON]
+	if not config_user.has_key('FIXED_TIME_MIDAFTERNOON'):
+		if config_missing['FIXED_TIME_MIDAFTERNOON']:
+			print "\t>> Fatal error: config setting [%s] is required" % ('FIXED_TIME_MIDAFTERNOON')
+			sys.exit(1)
+		else:
+			print "\t>> Config: using default for setting [%s]" % ('FIXED_TIME_MIDAFTERNOON')
+			config['FIXED_TIME_MIDAFTERNOON'] = config_default['FIXED_TIME_MIDAFTERNOON']
+	elif config_user['FIXED_TIME_MIDAFTERNOON'] == "":
+			print "\t>> Fatal error: config setting [%s] is missing and required" % ('FIXED_TIME_MIDAFTERNOON')
+			sys.exit(1)
+	else:
+		config['FIXED_TIME_MIDAFTERNOON'] = config_user['FIXED_TIME_MIDAFTERNOON']
+		config_missing['FIXED_TIME_MIDAFTERNOON'] = False
+	if DEBUG:
+		if config_missing['FIXED_TIME_MIDAFTERNOON']:
+			print "\t>> user config [%s] is missing or blank" % ('FIXED_TIME_MIDAFTERNOON')
+		else:
+			print "\t>> user config [%s] is set to [%s]" % ('FIXED_TIME_MIDAFTERNOON', config['FIXED_TIME_MIDAFTERNOON'])
+
+	# setting user config [FIXED_TIME_SUNSET]
+	if not config_user.has_key('FIXED_TIME_SUNSET'):
+		if config_missing['FIXED_TIME_SUNSET']:
+			print "\t>> Fatal error: config setting [%s] is required" % ('FIXED_TIME_SUNSET')
+			sys.exit(1)
+		else:
+			print "\t>> Config: using default for setting [%s]" % ('FIXED_TIME_SUNSET')
+			config['FIXED_TIME_SUNSET'] = config_default['FIXED_TIME_SUNSET']
+	elif config_user['FIXED_TIME_SUNSET'] == "":
+			print "\t>> Fatal error: config setting [%s] is missing and required" % ('FIXED_TIME_SUNSET')
+			sys.exit(1)
+	else:
+		config['FIXED_TIME_SUNSET'] = config_user['FIXED_TIME_SUNSET']
+		config_missing['FIXED_TIME_SUNSET'] = False
+	if DEBUG:
+		if config_missing['FIXED_TIME_SUNSET']:
+			print "\t>> user config [%s] is missing or blank" % ('FIXED_TIME_SUNSET')
+		else:
+			print "\t>> user config [%s] is set to [%s]" % ('FIXED_TIME_SUNSET', config['FIXED_TIME_SUNSET'])
+
+	# setting user config [FIXED_TIME_DUSK]
+	if not config_user.has_key('FIXED_TIME_DUSK'):
+		if config_missing['FIXED_TIME_DUSK']:
+			print "\t>> Fatal error: config setting [%s] is required" % ('FIXED_TIME_DUSK')
+			sys.exit(1)
+		else:
+			print "\t>> Config: using default for setting [%s]" % ('FIXED_TIME_DUSK')
+			config['FIXED_TIME_DUSK'] = config_default['FIXED_TIME_DUSK']
+	elif config_user['FIXED_TIME_DUSK'] == "":
+			print "\t>> Fatal error: config setting [%s] is missing and required" % ('FIXED_TIME_DUSK')
+			sys.exit(1)
+	else:
+		config['FIXED_TIME_DUSK'] = config_user['FIXED_TIME_DUSK']
+		config_missing['FIXED_TIME_DUSK'] = False
+	if DEBUG:
+		if config_missing['FIXED_TIME_DUSK']:
+			print "\t>> user config [%s] is missing or blank" % ('FIXED_TIME_DUSK')
+		else:
+			print "\t>> user config [%s] is set to [%s]" % ('FIXED_TIME_DUSK', config['FIXED_TIME_DUSK'])
+
+	# setting user config [FIXED_TIME_LATENIGHT]
+	if not config_user.has_key('FIXED_TIME_LATENIGHT'):
+		if config_missing['FIXED_TIME_LATENIGHT']:
+			print "\t>> Fatal error: config setting [%s] is required" % ('FIXED_TIME_LATENIGHT')
+			sys.exit(1)
+		else:
+			print "\t>> Config: using default for setting [%s]" % ('FIXED_TIME_LATENIGHT')
+			config['FIXED_TIME_LATENIGHT'] = config_default['FIXED_TIME_LATENIGHT']
+	elif config_user['FIXED_TIME_LATENIGHT'] == "":
+			print "\t>> Fatal error: config setting [%s] is missing and required" % ('FIXED_TIME_LATENIGHT')
+			sys.exit(1)
+	else:
+		config['FIXED_TIME_LATENIGHT'] = config_user['FIXED_TIME_LATENIGHT']
+		config_missing['FIXED_TIME_LATENIGHT'] = False
+	if DEBUG:
+		if config_missing['FIXED_TIME_LATENIGHT']:
+			print "\t>> user config [%s] is missing or blank" % ('FIXED_TIME_LATENIGHT')
+		else:
+			print "\t>> user config [%s] is set to [%s]" % ('FIXED_TIME_LATENIGHT', config['FIXED_TIME_LATENIGHT'])
+
+	# setting user config [DAWN_AUDIO_FILENAME]
+	if not config_user.has_key('DAWN_AUDIO_FILENAME'):
+		if config_missing['DAWN_AUDIO_FILENAME']:
+			print "\t>> Fatal error: config setting [%s] is required" % ('DAWN_AUDIO_FILENAME')
+			sys.exit(1)
+		else:
+			print "\t>> Config: using default for setting [%s]" % ('DAWN_AUDIO_FILENAME')
+			config['DAWN_AUDIO_FILENAME'] = config_default['DAWN_AUDIO_FILENAME']
+	elif config_user['DAWN_AUDIO_FILENAME'] == "":
+			print "\t>> Fatal error: config setting [%s] is missing and required" % ('DAWN_AUDIO_FILENAME')
+			sys.exit(1)
+	else:
+		config['DAWN_AUDIO_FILENAME'] = config_user['DAWN_AUDIO_FILENAME']
+		config_missing['DAWN_AUDIO_FILENAME'] = False
+	if DEBUG:
+		if config_missing['DAWN_AUDIO_FILENAME']:
+			print "\t>> user config [%s] is missing or blank" % ('DAWN_AUDIO_FILENAME')
+		else:
+			print "\t>> user config [%s] is set to [%s]" % ('DAWN_AUDIO_FILENAME', config['DAWN_AUDIO_FILENAME'])
+
+	# setting user config [SUNRISE_AUDIO_FILENAME]
+	if not config_user.has_key('SUNRISE_AUDIO_FILENAME'):
+		if config_missing['SUNRISE_AUDIO_FILENAME']:
+			print "\t>> Fatal error: config setting [%s] is required" % ('SUNRISE_AUDIO_FILENAME')
+			sys.exit(1)
+		else:
+			print "\t>> Config: using default for setting [%s]" % ('SUNRISE_AUDIO_FILENAME')
+			config['SUNRISE_AUDIO_FILENAME'] = config_default['SUNRISE_AUDIO_FILENAME']
+	elif config_user['SUNRISE_AUDIO_FILENAME'] == "":
+			print "\t>> Fatal error: config setting [%s] is missing and required" % ('SUNRISE_AUDIO_FILENAME')
+			sys.exit(1)
+	else:
+		config['SUNRISE_AUDIO_FILENAME'] = config_user['SUNRISE_AUDIO_FILENAME']
+		config_missing['SUNRISE_AUDIO_FILENAME'] = False
+	if DEBUG:
+		if config_missing['SUNRISE_AUDIO_FILENAME']:
+			print "\t>> user config [%s] is missing or blank" % ('SUNRISE_AUDIO_FILENAME')
+		else:
+			print "\t>> user config [%s] is set to [%s]" % ('SUNRISE_AUDIO_FILENAME', config['SUNRISE_AUDIO_FILENAME'])
+
+	# setting user config [MIDMORNING_AUDIO_FILENAME]
+	if not config_user.has_key('MIDMORNING_AUDIO_FILENAME'):
+		if config_missing['MIDMORNING_AUDIO_FILENAME']:
+			print "\t>> Fatal error: config setting [%s] is required" % ('MIDMORNING_AUDIO_FILENAME')
+			sys.exit(1)
+		else:
+			print "\t>> Config: using default for setting [%s]" % ('MIDMORNING_AUDIO_FILENAME')
+			config['MIDMORNING_AUDIO_FILENAME'] = config_default['MIDMORNING_AUDIO_FILENAME']
+	elif config_user['MIDMORNING_AUDIO_FILENAME'] == "":
+			print "\t>> Fatal error: config setting [%s] is missing and required" % ('MIDMORNING_AUDIO_FILENAME')
+			sys.exit(1)
+	else:
+		config['MIDMORNING_AUDIO_FILENAME'] = config_user['MIDMORNING_AUDIO_FILENAME']
+		config_missing['MIDMORNING_AUDIO_FILENAME'] = False
+	if DEBUG:
+		if config_missing['MIDMORNING_AUDIO_FILENAME']:
+			print "\t>> user config [%s] is missing or blank" % ('MIDMORNING_AUDIO_FILENAME')
+		else:
+			print "\t>> user config [%s] is set to [%s]" % ('MIDMORNING_AUDIO_FILENAME', config['MIDMORNING_AUDIO_FILENAME'])
+
+	# setting user config [MIDAFTERNOON_AUDIO_FILENAME]
+	if not config_user.has_key('MIDAFTERNOON_AUDIO_FILENAME'):
+		if config_missing['MIDAFTERNOON_AUDIO_FILENAME']:
+			print "\t>> Fatal error: config setting [%s] is required" % ('MIDAFTERNOON_AUDIO_FILENAME')
+			sys.exit(1)
+		else:
+			print "\t>> Config: using default for setting [%s]" % ('MIDAFTERNOON_AUDIO_FILENAME')
+			config['MIDAFTERNOON_AUDIO_FILENAME'] = config_default['MIDAFTERNOON_AUDIO_FILENAME']
+	elif config_user['MIDAFTERNOON_AUDIO_FILENAME'] == "":
+			print "\t>> Fatal error: config setting [%s] is missing and required" % ('MIDAFTERNOON_AUDIO_FILENAME')
+			sys.exit(1)
+	else:
+		config['MIDAFTERNOON_AUDIO_FILENAME'] = config_user['MIDAFTERNOON_AUDIO_FILENAME']
+		config_missing['MIDAFTERNOON_AUDIO_FILENAME'] = False
+	if DEBUG:
+		if config_missing['MIDAFTERNOON_AUDIO_FILENAME']:
+			print "\t>> user config [%s] is missing or blank" % ('MIDAFTERNOON_AUDIO_FILENAME')
+		else:
+			print "\t>> user config [%s] is set to [%s]" % ('MIDAFTERNOON_AUDIO_FILENAME', config['MIDAFTERNOON_AUDIO_FILENAME'])
+
+	# setting user config [SUNSET_AUDIO_FILENAME]
+	if not config_user.has_key('SUNSET_AUDIO_FILENAME'):
+		if config_missing['SUNSET_AUDIO_FILENAME']:
+			print "\t>> Fatal error: config setting [%s] is required" % ('SUNSET_AUDIO_FILENAME')
+			sys.exit(1)
+		else:
+			print "\t>> Config: using default for setting [%s]" % ('SUNSET_AUDIO_FILENAME')
+			config['SUNSET_AUDIO_FILENAME'] = config_default['SUNSET_AUDIO_FILENAME']
+	elif config_user['SUNSET_AUDIO_FILENAME'] == "":
+			print "\t>> Fatal error: config setting [%s] is missing and required" % ('SUNSET_AUDIO_FILENAME')
+			sys.exit(1)
+	else:
+		config['SUNSET_AUDIO_FILENAME'] = config_user['SUNSET_AUDIO_FILENAME']
+		config_missing['SUNSET_AUDIO_FILENAME'] = False
+	if DEBUG:
+		if config_missing['SUNSET_AUDIO_FILENAME']:
+			print "\t>> user config [%s] is missing or blank" % ('SUNSET_AUDIO_FILENAME')
+		else:
+			print "\t>> user config [%s] is set to [%s]" % ('SUNSET_AUDIO_FILENAME', config['SUNSET_AUDIO_FILENAME'])
+
+	# setting user config [DUSK_AUDIO_FILENAME]
+	if not config_user.has_key('DUSK_AUDIO_FILENAME'):
+		if config_missing['DUSK_AUDIO_FILENAME']:
+			print "\t>> Fatal error: config setting [%s] is required" % ('DUSK_AUDIO_FILENAME')
+			sys.exit(1)
+		else:
+			print "\t>> Config: using default for setting [%s]" % ('DUSK_AUDIO_FILENAME')
+			config['DUSK_AUDIO_FILENAME'] = config_default['DUSK_AUDIO_FILENAME']
+	elif config_user['DUSK_AUDIO_FILENAME'] == "":
+			print "\t>> Fatal error: config setting [%s] is missing and required" % ('DUSK_AUDIO_FILENAME')
+			sys.exit(1)
+	else:
+		config['DUSK_AUDIO_FILENAME'] = config_user['DUSK_AUDIO_FILENAME']
+		config_missing['DUSK_AUDIO_FILENAME'] = False
+	if DEBUG:
+		if config_missing['DUSK_AUDIO_FILENAME']:
+			print "\t>> user config [%s] is missing or blank" % ('DUSK_AUDIO_FILENAME')
+		else:
+			print "\t>> user config [%s] is set to [%s]" % ('DUSK_AUDIO_FILENAME', config['DUSK_AUDIO_FILENAME'])
+
+	# setting user config [LATENIGHT_AUDIO_FILENAME]
+	if not config_user.has_key('LATENIGHT_AUDIO_FILENAME'):
+		if config_missing['LATENIGHT_AUDIO_FILENAME']:
+			print "\t>> Fatal error: config setting [%s] is required" % ('LATENIGHT_AUDIO_FILENAME')
+			sys.exit(1)
+		else:
+			print "\t>> Config: using default for setting [%s]" % ('LATENIGHT_AUDIO_FILENAME')
+			config['LATENIGHT_AUDIO_FILENAME'] = config_default['LATENIGHT_AUDIO_FILENAME']
+	elif config_user['LATENIGHT_AUDIO_FILENAME'] == "":
+			print "\t>> Fatal error: config setting [%s] is missing and required" % ('LATENIGHT_AUDIO_FILENAME')
+			sys.exit(1)
+	else:
+		config['LATENIGHT_AUDIO_FILENAME'] = config_user['LATENIGHT_AUDIO_FILENAME']
+		config_missing['LATENIGHT_AUDIO_FILENAME'] = False
+	if DEBUG:
+		if config_missing['LATENIGHT_AUDIO_FILENAME']:
+			print "\t>> user config [%s] is missing or blank" % ('LATENIGHT_AUDIO_FILENAME')
+		else:
+			print "\t>> user config [%s] is set to [%s]" % ('LATENIGHT_AUDIO_FILENAME', config['LATENIGHT_AUDIO_FILENAME'])
+
+	# setting user config [OVERLAP_TIME]
+	if not config_user.has_key('OVERLAP_TIME'):
+		if config_missing['OVERLAP_TIME']:
+			print "\t>> Fatal error: config setting [%s] is required" % ('OVERLAP_TIME')
+			sys.exit(1)
+		else:
+			print "\t>> Config: using default for setting [%s]" % ('OVERLAP_TIME')
+			config['OVERLAP_TIME'] = config_default['OVERLAP_TIME']
+	elif config_user['OVERLAP_TIME'] == "":
+			print "\t>> Fatal error: config setting [%s] is missing and required" % ('OVERLAP_TIME')
+			sys.exit(1)
+	else:
+		config['OVERLAP_TIME'] = config_user['OVERLAP_TIME']
+		config_missing['OVERLAP_TIME'] = False
+	if DEBUG:
+		if config_missing['OVERLAP_TIME']:
+			print "\t>> user config [%s] is missing or blank" % ('OVERLAP_TIME')
+		else:
+			print "\t>> user config [%s] is set to [%s]" % ('OVERLAP_TIME', config['OVERLAP_TIME'])
+
+	# setting user config [AUDIO_FADE_TIME]
+	if not config_user.has_key('AUDIO_FADE_TIME'):
+		if config_missing['AUDIO_FADE_TIME']:
+			print "\t>> Fatal error: config setting [%s] is required" % ('AUDIO_FADE_TIME')
+			sys.exit(1)
+		else:
+			print "\t>> Config: using default for setting [%s]" % ('AUDIO_FADE_TIME')
+			config['AUDIO_FADE_TIME'] = config_default['AUDIO_FADE_TIME']
+	elif config_user['AUDIO_FADE_TIME'] == "":
+			print "\t>> Fatal error: config setting [%s] is missing and required" % ('AUDIO_FADE_TIME')
+			sys.exit(1)
+	else:
+		config['AUDIO_FADE_TIME'] = config_user['AUDIO_FADE_TIME']
+		config_missing['AUDIO_FADE_TIME'] = False
+	if DEBUG:
+		if config_missing['AUDIO_FADE_TIME']:
+			print "\t>> user config [%s] is missing or blank" % ('AUDIO_FADE_TIME')
+		else:
+			print "\t>> user config [%s] is set to [%s]" % ('AUDIO_FADE_TIME', config['AUDIO_FADE_TIME'])
+
+	# setting user config [DEBUG]
+	if not config_user.has_key('DEBUG'):
+		if config_missing['DEBUG']:
+			print "\t>> Fatal error: config setting [%s] is required" % ('DEBUG')
+			sys.exit(1)
+		else:
+			print "\t>> Config: using default for setting [%s]" % ('DEBUG')
+			config['DEBUG'] = config_default['DEBUG']
+	elif config_user['DEBUG'] == "":
+			print "\t>> Fatal error: config setting [%s] is missing and required" % ('DEBUG')
+			sys.exit(1)
+	else:
+		config['DEBUG'] = config_user['DEBUG']
+		config_missing['DEBUG'] = False
+	if DEBUG:
+		if config_missing['DEBUG']:
+			print "\t>> user config [%s] is missing or blank" % ('DEBUG')
+		else:
+			print "\t>> user config [%s] is set to [%s]" % ('DEBUG', config['DEBUG'])
+
+	# setting user config [AUDIO_CROSSFADE_TIME]
+	if not config_user.has_key('AUDIO_CROSSFADE_TIME'):
+		if config_missing['AUDIO_CROSSFADE_TIME']:
+			print "\t>> Fatal error: config setting [%s] is required" % ('AUDIO_CROSSFADE_TIME')
+			sys.exit(1)
+		else:
+			print "\t>> Config: using default for setting [%s]" % ('AUDIO_CROSSFADE_TIME')
+			config['AUDIO_CROSSFADE_TIME'] = config_default['AUDIO_CROSSFADE_TIME']
+	elif config_user['AUDIO_CROSSFADE_TIME'] == "":
+			print "\t>> Fatal error: config setting [%s] is missing and required" % ('AUDIO_CROSSFADE_TIME')
+			sys.exit(1)
+	else:
+		config['AUDIO_CROSSFADE_TIME'] = config_user['AUDIO_CROSSFADE_TIME']
+		config_missing['AUDIO_CROSSFADE_TIME'] = False
+	if DEBUG:
+		if config_missing['AUDIO_CROSSFADE_TIME']:
+			print "\t>> user config [%s] is missing or blank" % ('AUDIO_CROSSFADE_TIME')
+		else:
+			print "\t>> user config [%s] is set to [%s]" % ('AUDIO_CROSSFADE_TIME', config['AUDIO_CROSSFADE_TIME'])
+
+	# setting user config [start_time]
+	if not config_user.has_key('start_time'):
+		if config_missing['start_time']:
+			print "\t>> Fatal error: config setting [%s] is required" % ('start_time')
+			sys.exit(1)
+		else:
+			print "\t>> Config: using default for setting [%s]" % ('start_time')
+			config['start_time'] = config_default['start_time']
+	elif config_user['start_time'] == "":
+			print "\t>> Fatal error: config setting [%s] is missing and required" % ('start_time')
+			sys.exit(1)
+	else:
+		config['start_time'] = config_user['start_time']
+		config_missing['start_time'] = False
+	if DEBUG:
+		if config_missing['start_time']:
+			print "\t>> user config [%s] is missing or blank" % ('start_time')
+		else:
+			print "\t>> user config [%s] is set to [%s]" % ('start_time', config['start_time'])
+
+	# setting user config [stop_time]
+	if not config_user.has_key('stop_time'):
+		if config_missing['stop_time']:
+			print "\t>> Fatal error: config setting [%s] is required" % ('stop_time')
+			sys.exit(1)
+		else:
+			print "\t>> Config: using default for setting [%s]" % ('stop_time')
+			config['stop_time'] = config_default['stop_time']
+	elif config_user['stop_time'] == "":
+			print "\t>> Fatal error: config setting [%s] is missing and required" % ('stop_time')
+			sys.exit(1)
+	else:
+		config['stop_time'] = config_user['stop_time']
+		config_missing['stop_time'] = False
+	if DEBUG:
+		if config_missing['stop_time']:
+			print "\t>> user config [%s] is missing or blank" % ('stop_time')
+		else:
+			print "\t>> user config [%s] is set to [%s]" % ('stop_time', config['stop_time'])

@@ -2,6 +2,14 @@
 Amount	|	Part						|	Cost
 ---------------------------------------------------
 1x		|	Rasberry Pi					|	$30
-1x		|	DS3231 RTC Board			|	$10-20
+1x		|	DS3231 RTC Board			|	$5
 1x		|	i2c Audio class-D Amplifier	|	$10
 2x		|	Speakers					|	$10
+
+Screen
+------------------------------------------------
+BW screen + 5 button pad on PCB
+http://emsystech.de/lcd-display-add-on-for-raspberry-pi/
+
+1.8 Inch Color  TFT SPI			| $5
+keypad							| 

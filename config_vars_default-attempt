@@ -1,0 +1,309 @@
+    # setting default config [AUDIO_DIRECTORY]
+    if not config_default.has_key('AUDIO_DIRECTORY'):
+            print "%s: Fatal error: config entry [%s] is required" % (time.strftime("%H:%M:%S"), 'AUDIO_DIRECTORY')
+            sys.exit(1)
+    elif config_default['AUDIO_DIRECTORY'] == "":
+            print "%s: Fatal error: config entry [%s] is required" % (time.strftime("%H:%M:%S"), 'AUDIO_DIRECTORY')
+    elif os.path.isdir(config_default['AUDIO_DIRECTORY']):
+            print "%s: Fatal error: config entry [%s], directory not found" % (time.strftime("%H:%M:%S"), 'AUDIO_DIRECTORY')
+            print "\t\t[%s]" % (time.strftime("%H:%M:%S"), config_default['AUDIO_DIRECTORY'])
+    else:
+            config['AUDIO_DIRECTORY'] = config_default['AUDIO_DIRECTORY']
+
+    # setting default config [CITY_LOCATION]
+    if not config_default.has_key('CITY_LOCATION'):
+            print "%s: Fatal error: config entry [%s] is required" % (time.strftime("%H:%M:%S"), 'CITY_LOCATION')
+            sys.exit(1)
+    elif config_default['CITY_LOCATION'] == "":
+            print "%s: Fatal error: config entry [%s] is required" % (time.strftime("%H:%M:%S"), 'CITY_LOCATION')
+    else:
+            config['CITY_LOCATION'] = config_default['CITY_LOCATION']
+
+    # setting default config [ENABLE_WIFI]
+    if not config_default.has_key('ENABLE_WIFI'):
+            print "%s: Fatal error: config entry [%s] is required" % (time.strftime("%H:%M:%S"), 'ENABLE_WIFI')
+            sys.exit(1)
+    elif config_default['ENABLE_WIFI'] == "":
+            print "%s: Fatal error: config entry [%s] is required" % (time.strftime("%H:%M:%S"), 'ENABLE_WIFI')
+    else:
+        x = truth_or_dare(config_default['ENABLE_WIFI'])
+        if x == 2:
+            print "%s: Fatal error: config entry [%s] needs to be true or false" % (time.strftime("%H:%M:%S"), 'ENABLE_WIFI')            
+        elif x == 0:
+            config['ENABLE_WIFI'] = False
+        else:
+            config['ENABLE_WIFI'] = True       
+        
+    # setting default config [WIFI_ACCESS_POINT]
+    if config['ENABLE_WIFI']:
+        if not config_default.has_key('WIFI_ACCESS_POINT'):
+            print "%s: Fatal error: config entry [%s] is required with WIFI enabled" % (time.strftime("%H:%M:%S"), 'WIFI_ACCESS_POINT')
+            sys.exit(1)
+        elif config_default['WIFI_ACCESS_POINT'] == "":
+            print "%s: Fatal error: config entry [%s] is required with WIFI enabled" % (time.strftime("%H:%M:%S"), 'WIFI_ACCESS_POINT')
+        else:
+
+            config['WIFI_ACCESS_POINT'] = config_default['WIFI_ACCESS_POINT']
+        # setting default config [WIFI_PASSWORD] (NOT REQUIRED)
+        # if config_default['WIFI_PASSWORD'] == "":
+            # config['WIFI_PASSWORD'] = '' 
+        # else:
+            # config['WIFI_PASSWORD'] = config_default['WIFI_PASSWORD']
+
+    # setting default config [BACKGROUND_SOUND_ENABLE]
+    if not config_default.has_key('BACKGROUND_SOUND_ENABLE'):
+            print "%s: Fatal error: config entry [%s] is required" % (time.strftime("%H:%M:%S"), 'BACKGROUND_SOUND_ENABLE')
+            sys.exit(1)
+    elif config_default['BACKGROUND_SOUND_ENABLE'] == "":
+            print "%s: Fatal error: config entry [%s] is required" % (time.strftime("%H:%M:%S"), 'BACKGROUND_SOUND_ENABLE')
+            sys.exit(1)
+    else:
+        # config['BACKGROUND_SOUND_ENABLE'] = config_default['BACKGROUND_SOUND_ENABLE']
+        x = truth_or_dare(config_default['BACKGROUND_SOUND_ENABLE'])
+        if x == 2:
+            print "%s: Fatal error: config entry [%s] needs to be true or false" % (time.strftime("%H:%M:%S"), 'BACKGROUND_SOUND_ENABLE')            
+        elif x == 0:
+            config['BACKGROUND_SOUND_ENABLE'] = False
+        else:
+            config['BACKGROUND_SOUND_ENABLE'] = True       
+        
+
+    # setting default config [BACKGROUND_SOUND_FILENAME]
+    if config['BACKGROUND_SOUND_ENABLE']:
+        if not config_default.has_key('BACKGROUND_SOUND_FILENAME'):
+            print "%s: Fatal error: config entry [%s] is required" % (time.strftime("%H:%M:%S"), 'BACKGROUND_SOUND_FILENAME')
+            sys.exit(1)
+        elif config_default['BACKGROUND_SOUND_FILENAME'] == "":
+            print "%s: Fatal error: config entry [%s] is required" % (time.strftime("%H:%M:%S"), 'BACKGROUND_SOUND_FILENAME')
+            sys.exit(1)
+        elif not os.path.isfile(config_default['BACKGROUND_SOUND_FILENAME']):
+            print "%s: Fatal error: config entry %s=%s does not exist" % (time.strftime("%H:%M:%S"), 'BACKGROUND_SOUND_FILENAME', config_default['BACKGROUND_SOUND_FILENAME'])
+            sys.exit(1)
+        else:
+            config['BACKGROUND_SOUND_FILENAME'] = config_default['BACKGROUND_SOUND_FILENAME']
+
+    # setting default config [BACKGROUND_SOUND_VOLUME]
+    if not config_default.has_key('BACKGROUND_SOUND_VOLUME'):
+            print "%s: Fatal error: config entry [%s] is required" % (time.strftime("%H:%M:%S"), 'BACKGROUND_SOUND_VOLUME')
+            sys.exit(1)
+    elif config_default['BACKGROUND_SOUND_VOLUME'] == "":
+            print "%s: Fatal error: config entry [%s] is required" % (time.strftime("%H:%M:%S"), 'BACKGROUND_SOUND_VOLUME')
+    else:
+            config['BACKGROUND_SOUND_VOLUME'] = config_default['BACKGROUND_SOUND_VOLUME']
+
+    # setting default config [ENABLE_FIXED_TIME_MODE]
+    if not config_default.has_key('ENABLE_FIXED_TIME_MODE'):
+            print "%s: Fatal error: config entry [%s] is required" % (time.strftime("%H:%M:%S"), 'ENABLE_FIXED_TIME_MODE')
+            sys.exit(1)
+    elif config_default['ENABLE_FIXED_TIME_MODE'] == "":
+            print "%s: Fatal error: config entry [%s] is required" % (time.strftime("%H:%M:%S"), 'ENABLE_FIXED_TIME_MODE')
+    else:
+            config['ENABLE_FIXED_TIME_MODE'] = config_default['ENABLE_FIXED_TIME_MODE']
+
+    # setting default config [START_OF_THE_DAY_MODE]
+    if not config_default.has_key('START_OF_THE_DAY_MODE'):
+            print "%s: Fatal error: config entry [%s] is required" % (time.strftime("%H:%M:%S"), 'START_OF_THE_DAY_MODE')
+            sys.exit(1)
+    elif config_default['START_OF_THE_DAY_MODE'] == "":
+            print "%s: Fatal error: config entry [%s] is required" % (time.strftime("%H:%M:%S"), 'START_OF_THE_DAY_MODE')
+    else:
+            config['START_OF_THE_DAY_MODE'] = config_default['START_OF_THE_DAY_MODE']
+
+    # setting default config [END_OF_THE_DAY_MODE]
+    if not config_default.has_key('END_OF_THE_DAY_MODE'):
+            print "%s: Fatal error: config entry [%s] is required" % (time.strftime("%H:%M:%S"), 'END_OF_THE_DAY_MODE')
+            sys.exit(1)
+    elif config_default['END_OF_THE_DAY_MODE'] == "":
+            print "%s: Fatal error: config entry [%s] is required" % (time.strftime("%H:%M:%S"), 'END_OF_THE_DAY_MODE')
+    else:
+            config['END_OF_THE_DAY_MODE'] = config_default['END_OF_THE_DAY_MODE']
+
+    # setting default config [ENABLE_FIXED_LATENIGHT]
+    if not config_default.has_key('ENABLE_FIXED_LATENIGHT'):
+            print "%s: Fatal error: config entry [%s] is required" % (time.strftime("%H:%M:%S"), 'ENABLE_FIXED_LATENIGHT')
+            sys.exit(1)
+    elif config_default['ENABLE_FIXED_LATENIGHT'] == "":
+            print "%s: Fatal error: config entry [%s] is required" % (time.strftime("%H:%M:%S"), 'ENABLE_FIXED_LATENIGHT')
+    else:
+            config['ENABLE_FIXED_LATENIGHT'] = config_default['ENABLE_FIXED_LATENIGHT']
+
+    # setting default config [FIXED_TIME_DAWN]
+    if not config_default.has_key('FIXED_TIME_DAWN'):
+            print "%s: Fatal error: config entry [%s] is required" % (time.strftime("%H:%M:%S"), 'FIXED_TIME_DAWN')
+            sys.exit(1)
+    elif config_default['FIXED_TIME_DAWN'] == "":
+            print "%s: Fatal error: config entry [%s] is required" % (time.strftime("%H:%M:%S"), 'FIXED_TIME_DAWN')
+    else:
+            config['FIXED_TIME_DAWN'] = config_default['FIXED_TIME_DAWN']
+
+    # setting default config [FIXED_TIME_SUNRISE]
+    if not config_default.has_key('FIXED_TIME_SUNRISE'):
+            print "%s: Fatal error: config entry [%s] is required" % (time.strftime("%H:%M:%S"), 'FIXED_TIME_SUNRISE')
+            sys.exit(1)
+    elif config_default['FIXED_TIME_SUNRISE'] == "":
+            print "%s: Fatal error: config entry [%s] is required" % (time.strftime("%H:%M:%S"), 'FIXED_TIME_SUNRISE')
+    else:
+            config['FIXED_TIME_SUNRISE'] = config_default['FIXED_TIME_SUNRISE']
+
+    # setting default config [FIXED_TIME_MIDMORNING]
+    if not config_default.has_key('FIXED_TIME_MIDMORNING'):
+            print "%s: Fatal error: config entry [%s] is required" % (time.strftime("%H:%M:%S"), 'FIXED_TIME_MIDMORNING')
+            sys.exit(1)
+    elif config_default['FIXED_TIME_MIDMORNING'] == "":
+            print "%s: Fatal error: config entry [%s] is required" % (time.strftime("%H:%M:%S"), 'FIXED_TIME_MIDMORNING')
+    else:
+            config['FIXED_TIME_MIDMORNING'] = config_default['FIXED_TIME_MIDMORNING']
+
+    # setting default config [FIXED_TIME_MIDAFTERNOON]
+    if not config_default.has_key('FIXED_TIME_MIDAFTERNOON'):
+            print "%s: Fatal error: config entry [%s] is required" % (time.strftime("%H:%M:%S"), 'FIXED_TIME_MIDAFTERNOON')
+            sys.exit(1)
+    elif config_default['FIXED_TIME_MIDAFTERNOON'] == "":
+            print "%s: Fatal error: config entry [%s] is required" % (time.strftime("%H:%M:%S"), 'FIXED_TIME_MIDAFTERNOON')
+    else:
+            config['FIXED_TIME_MIDAFTERNOON'] = config_default['FIXED_TIME_MIDAFTERNOON']
+
+    # setting default config [FIXED_TIME_SUNSET]
+    if not config_default.has_key('FIXED_TIME_SUNSET'):
+            print "%s: Fatal error: config entry [%s] is required" % (time.strftime("%H:%M:%S"), 'FIXED_TIME_SUNSET')
+            sys.exit(1)
+    elif config_default['FIXED_TIME_SUNSET'] == "":
+            print "%s: Fatal error: config entry [%s] is required" % (time.strftime("%H:%M:%S"), 'FIXED_TIME_SUNSET')
+    else:
+            config['FIXED_TIME_SUNSET'] = config_default['FIXED_TIME_SUNSET']
+
+    # setting default config [FIXED_TIME_DUSK]
+    if not config_default.has_key('FIXED_TIME_DUSK'):
+            print "%s: Fatal error: config entry [%s] is required" % (time.strftime("%H:%M:%S"), 'FIXED_TIME_DUSK')
+            sys.exit(1)
+    elif config_default['FIXED_TIME_DUSK'] == "":
+            print "%s: Fatal error: config entry [%s] is required" % (time.strftime("%H:%M:%S"), 'FIXED_TIME_DUSK')
+    else:
+            config['FIXED_TIME_DUSK'] = config_default['FIXED_TIME_DUSK']
+
+    # setting default config [FIXED_TIME_LATENIGHT]
+    if not config_default.has_key('FIXED_TIME_LATENIGHT'):
+            print "%s: Fatal error: config entry [%s] is required" % (time.strftime("%H:%M:%S"), 'FIXED_TIME_LATENIGHT')
+            sys.exit(1)
+    elif config_default['FIXED_TIME_LATENIGHT'] == "":
+            print "%s: Fatal error: config entry [%s] is required" % (time.strftime("%H:%M:%S"), 'FIXED_TIME_LATENIGHT')
+    else:
+            config['FIXED_TIME_LATENIGHT'] = config_default['FIXED_TIME_LATENIGHT']
+
+    # setting default config [DAWN_AUDIO_FILENAME]
+    if not config_default.has_key('DAWN_AUDIO_FILENAME'):
+            print "%s: Fatal error: config entry [%s] is required" % (time.strftime("%H:%M:%S"), 'DAWN_AUDIO_FILENAME')
+            sys.exit(1)
+    elif config_default['DAWN_AUDIO_FILENAME'] == "":
+            print "%s: Fatal error: config entry [%s] is required" % (time.strftime("%H:%M:%S"), 'DAWN_AUDIO_FILENAME')
+    else:
+            config['DAWN_AUDIO_FILENAME'] = config_default['DAWN_AUDIO_FILENAME']
+
+    # setting default config [SUNRISE_AUDIO_FILENAME]
+    if not config_default.has_key('SUNRISE_AUDIO_FILENAME'):
+            print "%s: Fatal error: config entry [%s] is required" % (time.strftime("%H:%M:%S"), 'SUNRISE_AUDIO_FILENAME')
+            sys.exit(1)
+    elif config_default['SUNRISE_AUDIO_FILENAME'] == "":
+            print "%s: Fatal error: config entry [%s] is required" % (time.strftime("%H:%M:%S"), 'SUNRISE_AUDIO_FILENAME')
+    else:
+            config['SUNRISE_AUDIO_FILENAME'] = config_default['SUNRISE_AUDIO_FILENAME']
+
+    # setting default config [MIDMORNING_AUDIO_FILENAME]
+    if not config_default.has_key('MIDMORNING_AUDIO_FILENAME'):
+            print "%s: Fatal error: config entry [%s] is required" % (time.strftime("%H:%M:%S"), 'MIDMORNING_AUDIO_FILENAME')
+            sys.exit(1)
+    elif config_default['MIDMORNING_AUDIO_FILENAME'] == "":
+            print "%s: Fatal error: config entry [%s] is required" % (time.strftime("%H:%M:%S"), 'MIDMORNING_AUDIO_FILENAME')
+    else:
+            config['MIDMORNING_AUDIO_FILENAME'] = config_default['MIDMORNING_AUDIO_FILENAME']
+
+    # setting default config [MIDAFTERNOON_AUDIO_FILENAME]
+    if not config_default.has_key('MIDAFTERNOON_AUDIO_FILENAME'):
+            print "%s: Fatal error: config entry [%s] is required" % (time.strftime("%H:%M:%S"), 'MIDAFTERNOON_AUDIO_FILENAME')
+            sys.exit(1)
+    elif config_default['MIDAFTERNOON_AUDIO_FILENAME'] == "":
+            print "%s: Fatal error: config entry [%s] is required" % (time.strftime("%H:%M:%S"), 'MIDAFTERNOON_AUDIO_FILENAME')
+    else:
+            config['MIDAFTERNOON_AUDIO_FILENAME'] = config_default['MIDAFTERNOON_AUDIO_FILENAME']
+
+    # setting default config [SUNSET_AUDIO_FILENAME]
+    if not config_default.has_key('SUNSET_AUDIO_FILENAME'):
+            print "%s: Fatal error: config entry [%s] is required" % (time.strftime("%H:%M:%S"), 'SUNSET_AUDIO_FILENAME')
+            sys.exit(1)
+    elif config_default['SUNSET_AUDIO_FILENAME'] == "":
+            print "%s: Fatal error: config entry [%s] is required" % (time.strftime("%H:%M:%S"), 'SUNSET_AUDIO_FILENAME')
+    else:
+            config['SUNSET_AUDIO_FILENAME'] = config_default['SUNSET_AUDIO_FILENAME']
+
+    # setting default config [DUSK_AUDIO_FILENAME]
+    if not config_default.has_key('DUSK_AUDIO_FILENAME'):
+            print "%s: Fatal error: config entry [%s] is required" % (time.strftime("%H:%M:%S"), 'DUSK_AUDIO_FILENAME')
+            sys.exit(1)
+    elif config_default['DUSK_AUDIO_FILENAME'] == "":
+            print "%s: Fatal error: config entry [%s] is required" % (time.strftime("%H:%M:%S"), 'DUSK_AUDIO_FILENAME')
+    else:
+            config['DUSK_AUDIO_FILENAME'] = config_default['DUSK_AUDIO_FILENAME']
+
+    # setting default config [LATENIGHT_AUDIO_FILENAME]
+    if not config_default.has_key('LATENIGHT_AUDIO_FILENAME'):
+            print "%s: Fatal error: config entry [%s] is required" % (time.strftime("%H:%M:%S"), 'LATENIGHT_AUDIO_FILENAME')
+            sys.exit(1)
+    elif config_default['LATENIGHT_AUDIO_FILENAME'] == "":
+            print "%s: Fatal error: config entry [%s] is required" % (time.strftime("%H:%M:%S"), 'LATENIGHT_AUDIO_FILENAME')
+    else:
+            config['LATENIGHT_AUDIO_FILENAME'] = config_default['LATENIGHT_AUDIO_FILENAME']
+
+    # setting default config [OVERLAP_TIME]
+    if not config_default.has_key('OVERLAP_TIME'):
+            print "%s: Fatal error: config entry [%s] is required" % (time.strftime("%H:%M:%S"), 'OVERLAP_TIME')
+            sys.exit(1)
+    elif config_default['OVERLAP_TIME'] == "":
+            print "%s: Fatal error: config entry [%s] is required" % (time.strftime("%H:%M:%S"), 'OVERLAP_TIME')
+    else:
+            config['OVERLAP_TIME'] = config_default['OVERLAP_TIME']
+
+    # setting default config [AUDIO_FADE_TIME]
+    if not config_default.has_key('AUDIO_FADE_TIME'):
+            print "%s: Fatal error: config entry [%s] is required" % (time.strftime("%H:%M:%S"), 'AUDIO_FADE_TIME')
+            sys.exit(1)
+    elif config_default['AUDIO_FADE_TIME'] == "":
+            print "%s: Fatal error: config entry [%s] is required" % (time.strftime("%H:%M:%S"), 'AUDIO_FADE_TIME')
+    else:
+            config['AUDIO_FADE_TIME'] = config_default['AUDIO_FADE_TIME']
+
+    # setting default config [DEBUG]
+    if not config_default.has_key('DEBUG'):
+            print "%s: Fatal error: config entry [%s] is required" % (time.strftime("%H:%M:%S"), 'DEBUG')
+            sys.exit(1)
+    elif config_default['DEBUG'] == "":
+            print "%s: Fatal error: config entry [%s] is required" % (time.strftime("%H:%M:%S"), 'DEBUG')
+    else:
+            config['DEBUG'] = config_default['DEBUG']
+
+    # setting default config [AUDIO_CROSSFADE_TIME]
+    if not config_default.has_key('AUDIO_CROSSFADE_TIME'):
+            print "%s: Fatal error: config entry [%s] is required" % (time.strftime("%H:%M:%S"), 'AUDIO_CROSSFADE_TIME')
+            sys.exit(1)
+    elif config_default['AUDIO_CROSSFADE_TIME'] == "":
+            print "%s: Fatal error: config entry [%s] is required" % (time.strftime("%H:%M:%S"), 'AUDIO_CROSSFADE_TIME')
+    else:
+            config['AUDIO_CROSSFADE_TIME'] = config_default['AUDIO_CROSSFADE_TIME']
+
+    # setting default config [start_time]
+    if not config_default.has_key('start_time'):
+            print "%s: Fatal error: config entry [%s] is required" % (time.strftime("%H:%M:%S"), 'start_time')
+            sys.exit(1)
+    elif config_default['start_time'] == "":
+            print "%s: Fatal error: config entry [%s] is required" % (time.strftime("%H:%M:%S"), 'start_time')
+    else:
+            config['start_time'] = config_default['start_time']
+
+    # setting default config [stop_time]
+    if not config_default.has_key('stop_time'):
+            print "%s: Fatal error: config entry [%s] is required" % (time.strftime("%H:%M:%S"), 'stop_time')
+            sys.exit(1)
+    elif config_default['stop_time'] == "":
+            print "%s: Fatal error: config entry [%s] is required" % (time.strftime("%H:%M:%S"), 'stop_time')
+    else:
+            config['stop_time'] = config_default['stop_time']
+

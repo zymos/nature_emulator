@@ -1,0 +1,448 @@
+
+	# setting default config [AUDIO_DIRECTORY]
+	if not config_default.has_key('AUDIO_DIRECTORY'):
+		config_missing['AUDIO_DIRECTORY'] = True
+	elif config_default['AUDIO_DIRECTORY'] == "":
+		config_missing['AUDIO_DIRECTORY'] = True
+	else:
+		config['AUDIO_DIRECTORY'] = config_default['AUDIO_DIRECTORY']
+		config_missing['AUDIO_DIRECTORY'] = False
+	if DEBUG:
+		if config_missing['AUDIO_DIRECTORY']:
+			print "\t>> default config [%s] is missing or blank" % ('AUDIO_DIRECTORY')
+		else:
+			print "\t>> defalt config [%s] is set to [%s]" % ('AUDIO_DIRECTORY', config['AUDIO_DIRECTORY'])
+
+	# setting default config [CITY_LOCATION]
+	if not config_default.has_key('CITY_LOCATION'):
+		config_missing['CITY_LOCATION'] = True
+	elif config_default['CITY_LOCATION'] == "":
+		config_missing['CITY_LOCATION'] = True
+	else:
+		config['CITY_LOCATION'] = config_default['CITY_LOCATION']
+		config_missing['CITY_LOCATION'] = False
+	if DEBUG:
+		if config_missing['CITY_LOCATION']:
+			print "\t>> default config [%s] is missing or blank" % ('CITY_LOCATION')
+		else:
+			print "\t>> defalt config [%s] is set to [%s]" % ('CITY_LOCATION', config['CITY_LOCATION'])
+
+	# setting default config [ENABLE_WIFI]
+	if not config_default.has_key('ENABLE_WIFI'):
+		config_missing['ENABLE_WIFI'] = True
+	elif config_default['ENABLE_WIFI'] == "":
+		config_missing['ENABLE_WIFI'] = True
+	else:
+		config['ENABLE_WIFI'] = config_default['ENABLE_WIFI']
+		config_missing['ENABLE_WIFI'] = False
+	if DEBUG:
+		if config_missing['ENABLE_WIFI']:
+			print "\t>> default config [%s] is missing or blank" % ('ENABLE_WIFI')
+		else:
+			print "\t>> defalt config [%s] is set to [%s]" % ('ENABLE_WIFI', config['ENABLE_WIFI'])
+
+	# setting default config [WIFI_ACCESS_POINT]
+	if not config_default.has_key('WIFI_ACCESS_POINT'):
+		config_missing['WIFI_ACCESS_POINT'] = True
+	elif config_default['WIFI_ACCESS_POINT'] == "":
+		config_missing['WIFI_ACCESS_POINT'] = True
+	else:
+		config['WIFI_ACCESS_POINT'] = config_default['WIFI_ACCESS_POINT']
+		config_missing['WIFI_ACCESS_POINT'] = False
+	if DEBUG:
+		if config_missing['WIFI_ACCESS_POINT']:
+			print "\t>> default config [%s] is missing or blank" % ('WIFI_ACCESS_POINT')
+		else:
+			print "\t>> defalt config [%s] is set to [%s]" % ('WIFI_ACCESS_POINT', config['WIFI_ACCESS_POINT'])
+
+	# setting default config [WIFI_PASSWORD]
+	if not config_default.has_key('WIFI_PASSWORD'):
+		config_missing['WIFI_PASSWORD'] = True
+	elif config_default['WIFI_PASSWORD'] == "":
+		config_missing['WIFI_PASSWORD'] = True
+	else:
+		config['WIFI_PASSWORD'] = config_default['WIFI_PASSWORD']
+		config_missing['WIFI_PASSWORD'] = False
+	if DEBUG:
+		if config_missing['WIFI_PASSWORD']:
+			print "\t>> default config [%s] is missing or blank" % ('WIFI_PASSWORD')
+		else:
+			print "\t>> defalt config [%s] is set to [%s]" % ('WIFI_PASSWORD', config['WIFI_PASSWORD'])
+
+	# setting default config [BACKGROUND_SOUND_ENABLE]
+	if not config_default.has_key('BACKGROUND_SOUND_ENABLE'):
+		config_missing['BACKGROUND_SOUND_ENABLE'] = True
+	elif config_default['BACKGROUND_SOUND_ENABLE'] == "":
+		config_missing['BACKGROUND_SOUND_ENABLE'] = True
+	else:
+		config['BACKGROUND_SOUND_ENABLE'] = config_default['BACKGROUND_SOUND_ENABLE']
+		config_missing['BACKGROUND_SOUND_ENABLE'] = False
+	if DEBUG:
+		if config_missing['BACKGROUND_SOUND_ENABLE']:
+			print "\t>> default config [%s] is missing or blank" % ('BACKGROUND_SOUND_ENABLE')
+		else:
+			print "\t>> defalt config [%s] is set to [%s]" % ('BACKGROUND_SOUND_ENABLE', config['BACKGROUND_SOUND_ENABLE'])
+
+	# setting default config [BACKGROUND_SOUND_FILENAME]
+	if not config_default.has_key('BACKGROUND_SOUND_FILENAME'):
+		config_missing['BACKGROUND_SOUND_FILENAME'] = True
+	elif config_default['BACKGROUND_SOUND_FILENAME'] == "":
+		config_missing['BACKGROUND_SOUND_FILENAME'] = True
+	else:
+		config['BACKGROUND_SOUND_FILENAME'] = config_default['BACKGROUND_SOUND_FILENAME']
+		config_missing['BACKGROUND_SOUND_FILENAME'] = False
+	if DEBUG:
+		if config_missing['BACKGROUND_SOUND_FILENAME']:
+			print "\t>> default config [%s] is missing or blank" % ('BACKGROUND_SOUND_FILENAME')
+		else:
+			print "\t>> defalt config [%s] is set to [%s]" % ('BACKGROUND_SOUND_FILENAME', config['BACKGROUND_SOUND_FILENAME'])
+
+	# setting default config [BACKGROUND_SOUND_VOLUME]
+	if not config_default.has_key('BACKGROUND_SOUND_VOLUME'):
+		config_missing['BACKGROUND_SOUND_VOLUME'] = True
+	elif config_default['BACKGROUND_SOUND_VOLUME'] == "":
+		config_missing['BACKGROUND_SOUND_VOLUME'] = True
+	else:
+		config['BACKGROUND_SOUND_VOLUME'] = config_default['BACKGROUND_SOUND_VOLUME']
+		config_missing['BACKGROUND_SOUND_VOLUME'] = False
+	if DEBUG:
+		if config_missing['BACKGROUND_SOUND_VOLUME']:
+			print "\t>> default config [%s] is missing or blank" % ('BACKGROUND_SOUND_VOLUME')
+		else:
+			print "\t>> defalt config [%s] is set to [%s]" % ('BACKGROUND_SOUND_VOLUME', config['BACKGROUND_SOUND_VOLUME'])
+
+	# setting default config [ENABLE_FIXED_TIME_MODE]
+	if not config_default.has_key('ENABLE_FIXED_TIME_MODE'):
+		config_missing['ENABLE_FIXED_TIME_MODE'] = True
+	elif config_default['ENABLE_FIXED_TIME_MODE'] == "":
+		config_missing['ENABLE_FIXED_TIME_MODE'] = True
+	else:
+		config['ENABLE_FIXED_TIME_MODE'] = config_default['ENABLE_FIXED_TIME_MODE']
+		config_missing['ENABLE_FIXED_TIME_MODE'] = False
+	if DEBUG:
+		if config_missing['ENABLE_FIXED_TIME_MODE']:
+			print "\t>> default config [%s] is missing or blank" % ('ENABLE_FIXED_TIME_MODE')
+		else:
+			print "\t>> defalt config [%s] is set to [%s]" % ('ENABLE_FIXED_TIME_MODE', config['ENABLE_FIXED_TIME_MODE'])
+
+	# setting default config [START_OF_THE_DAY_MODE]
+	if not config_default.has_key('START_OF_THE_DAY_MODE'):
+		config_missing['START_OF_THE_DAY_MODE'] = True
+	elif config_default['START_OF_THE_DAY_MODE'] == "":
+		config_missing['START_OF_THE_DAY_MODE'] = True
+	else:
+		config['START_OF_THE_DAY_MODE'] = config_default['START_OF_THE_DAY_MODE']
+		config_missing['START_OF_THE_DAY_MODE'] = False
+	if DEBUG:
+		if config_missing['START_OF_THE_DAY_MODE']:
+			print "\t>> default config [%s] is missing or blank" % ('START_OF_THE_DAY_MODE')
+		else:
+			print "\t>> defalt config [%s] is set to [%s]" % ('START_OF_THE_DAY_MODE', config['START_OF_THE_DAY_MODE'])
+
+	# setting default config [END_OF_THE_DAY_MODE]
+	if not config_default.has_key('END_OF_THE_DAY_MODE'):
+		config_missing['END_OF_THE_DAY_MODE'] = True
+	elif config_default['END_OF_THE_DAY_MODE'] == "":
+		config_missing['END_OF_THE_DAY_MODE'] = True
+	else:
+		config['END_OF_THE_DAY_MODE'] = config_default['END_OF_THE_DAY_MODE']
+		config_missing['END_OF_THE_DAY_MODE'] = False
+	if DEBUG:
+		if config_missing['END_OF_THE_DAY_MODE']:
+			print "\t>> default config [%s] is missing or blank" % ('END_OF_THE_DAY_MODE')
+		else:
+			print "\t>> defalt config [%s] is set to [%s]" % ('END_OF_THE_DAY_MODE', config['END_OF_THE_DAY_MODE'])
+
+	# setting default config [ENABLE_FIXED_LATENIGHT]
+	if not config_default.has_key('ENABLE_FIXED_LATENIGHT'):
+		config_missing['ENABLE_FIXED_LATENIGHT'] = True
+	elif config_default['ENABLE_FIXED_LATENIGHT'] == "":
+		config_missing['ENABLE_FIXED_LATENIGHT'] = True
+	else:
+		config['ENABLE_FIXED_LATENIGHT'] = config_default['ENABLE_FIXED_LATENIGHT']
+		config_missing['ENABLE_FIXED_LATENIGHT'] = False
+	if DEBUG:
+		if config_missing['ENABLE_FIXED_LATENIGHT']:
+			print "\t>> default config [%s] is missing or blank" % ('ENABLE_FIXED_LATENIGHT')
+		else:
+			print "\t>> defalt config [%s] is set to [%s]" % ('ENABLE_FIXED_LATENIGHT', config['ENABLE_FIXED_LATENIGHT'])
+
+	# setting default config [FIXED_TIME_DAWN]
+	if not config_default.has_key('FIXED_TIME_DAWN'):
+		config_missing['FIXED_TIME_DAWN'] = True
+	elif config_default['FIXED_TIME_DAWN'] == "":
+		config_missing['FIXED_TIME_DAWN'] = True
+	else:
+		config['FIXED_TIME_DAWN'] = config_default['FIXED_TIME_DAWN']
+		config_missing['FIXED_TIME_DAWN'] = False
+	if DEBUG:
+		if config_missing['FIXED_TIME_DAWN']:
+			print "\t>> default config [%s] is missing or blank" % ('FIXED_TIME_DAWN')
+		else:
+			print "\t>> defalt config [%s] is set to [%s]" % ('FIXED_TIME_DAWN', config['FIXED_TIME_DAWN'])
+
+	# setting default config [FIXED_TIME_SUNRISE]
+	if not config_default.has_key('FIXED_TIME_SUNRISE'):
+		config_missing['FIXED_TIME_SUNRISE'] = True
+	elif config_default['FIXED_TIME_SUNRISE'] == "":
+		config_missing['FIXED_TIME_SUNRISE'] = True
+	else:
+		config['FIXED_TIME_SUNRISE'] = config_default['FIXED_TIME_SUNRISE']
+		config_missing['FIXED_TIME_SUNRISE'] = False
+	if DEBUG:
+		if config_missing['FIXED_TIME_SUNRISE']:
+			print "\t>> default config [%s] is missing or blank" % ('FIXED_TIME_SUNRISE')
+		else:
+			print "\t>> defalt config [%s] is set to [%s]" % ('FIXED_TIME_SUNRISE', config['FIXED_TIME_SUNRISE'])
+
+	# setting default config [FIXED_TIME_MIDMORNING]
+	if not config_default.has_key('FIXED_TIME_MIDMORNING'):
+		config_missing['FIXED_TIME_MIDMORNING'] = True
+	elif config_default['FIXED_TIME_MIDMORNING'] == "":
+		config_missing['FIXED_TIME_MIDMORNING'] = True
+	else:
+		config['FIXED_TIME_MIDMORNING'] = config_default['FIXED_TIME_MIDMORNING']
+		config_missing['FIXED_TIME_MIDMORNING'] = False
+	if DEBUG:
+		if config_missing['FIXED_TIME_MIDMORNING']:
+			print "\t>> default config [%s] is missing or blank" % ('FIXED_TIME_MIDMORNING')
+		else:
+			print "\t>> defalt config [%s] is set to [%s]" % ('FIXED_TIME_MIDMORNING', config['FIXED_TIME_MIDMORNING'])
+
+	# setting default config [FIXED_TIME_MIDAFTERNOON]
+	if not config_default.has_key('FIXED_TIME_MIDAFTERNOON'):
+		config_missing['FIXED_TIME_MIDAFTERNOON'] = True
+	elif config_default['FIXED_TIME_MIDAFTERNOON'] == "":
+		config_missing['FIXED_TIME_MIDAFTERNOON'] = True
+	else:
+		config['FIXED_TIME_MIDAFTERNOON'] = config_default['FIXED_TIME_MIDAFTERNOON']
+		config_missing['FIXED_TIME_MIDAFTERNOON'] = False
+	if DEBUG:
+		if config_missing['FIXED_TIME_MIDAFTERNOON']:
+			print "\t>> default config [%s] is missing or blank" % ('FIXED_TIME_MIDAFTERNOON')
+		else:
+			print "\t>> defalt config [%s] is set to [%s]" % ('FIXED_TIME_MIDAFTERNOON', config['FIXED_TIME_MIDAFTERNOON'])
+
+	# setting default config [FIXED_TIME_SUNSET]
+	if not config_default.has_key('FIXED_TIME_SUNSET'):
+		config_missing['FIXED_TIME_SUNSET'] = True
+	elif config_default['FIXED_TIME_SUNSET'] == "":
+		config_missing['FIXED_TIME_SUNSET'] = True
+	else:
+		config['FIXED_TIME_SUNSET'] = config_default['FIXED_TIME_SUNSET']
+		config_missing['FIXED_TIME_SUNSET'] = False
+	if DEBUG:
+		if config_missing['FIXED_TIME_SUNSET']:
+			print "\t>> default config [%s] is missing or blank" % ('FIXED_TIME_SUNSET')
+		else:
+			print "\t>> defalt config [%s] is set to [%s]" % ('FIXED_TIME_SUNSET', config['FIXED_TIME_SUNSET'])
+
+	# setting default config [FIXED_TIME_DUSK]
+	if not config_default.has_key('FIXED_TIME_DUSK'):
+		config_missing['FIXED_TIME_DUSK'] = True
+	elif config_default['FIXED_TIME_DUSK'] == "":
+		config_missing['FIXED_TIME_DUSK'] = True
+	else:
+		config['FIXED_TIME_DUSK'] = config_default['FIXED_TIME_DUSK']
+		config_missing['FIXED_TIME_DUSK'] = False
+	if DEBUG:
+		if config_missing['FIXED_TIME_DUSK']:
+			print "\t>> default config [%s] is missing or blank" % ('FIXED_TIME_DUSK')
+		else:
+			print "\t>> defalt config [%s] is set to [%s]" % ('FIXED_TIME_DUSK', config['FIXED_TIME_DUSK'])
+
+	# setting default config [FIXED_TIME_LATENIGHT]
+	if not config_default.has_key('FIXED_TIME_LATENIGHT'):
+		config_missing['FIXED_TIME_LATENIGHT'] = True
+	elif config_default['FIXED_TIME_LATENIGHT'] == "":
+		config_missing['FIXED_TIME_LATENIGHT'] = True
+	else:
+		config['FIXED_TIME_LATENIGHT'] = config_default['FIXED_TIME_LATENIGHT']
+		config_missing['FIXED_TIME_LATENIGHT'] = False
+	if DEBUG:
+		if config_missing['FIXED_TIME_LATENIGHT']:
+			print "\t>> default config [%s] is missing or blank" % ('FIXED_TIME_LATENIGHT')
+		else:
+			print "\t>> defalt config [%s] is set to [%s]" % ('FIXED_TIME_LATENIGHT', config['FIXED_TIME_LATENIGHT'])
+
+	# setting default config [DAWN_AUDIO_FILENAME]
+	if not config_default.has_key('DAWN_AUDIO_FILENAME'):
+		config_missing['DAWN_AUDIO_FILENAME'] = True
+	elif config_default['DAWN_AUDIO_FILENAME'] == "":
+		config_missing['DAWN_AUDIO_FILENAME'] = True
+	else:
+		config['DAWN_AUDIO_FILENAME'] = config_default['DAWN_AUDIO_FILENAME']
+		config_missing['DAWN_AUDIO_FILENAME'] = False
+	if DEBUG:
+		if config_missing['DAWN_AUDIO_FILENAME']:
+			print "\t>> default config [%s] is missing or blank" % ('DAWN_AUDIO_FILENAME')
+		else:
+			print "\t>> defalt config [%s] is set to [%s]" % ('DAWN_AUDIO_FILENAME', config['DAWN_AUDIO_FILENAME'])
+
+	# setting default config [SUNRISE_AUDIO_FILENAME]
+	if not config_default.has_key('SUNRISE_AUDIO_FILENAME'):
+		config_missing['SUNRISE_AUDIO_FILENAME'] = True
+	elif config_default['SUNRISE_AUDIO_FILENAME'] == "":
+		config_missing['SUNRISE_AUDIO_FILENAME'] = True
+	else:
+		config['SUNRISE_AUDIO_FILENAME'] = config_default['SUNRISE_AUDIO_FILENAME']
+		config_missing['SUNRISE_AUDIO_FILENAME'] = False
+	if DEBUG:
+		if config_missing['SUNRISE_AUDIO_FILENAME']:
+			print "\t>> default config [%s] is missing or blank" % ('SUNRISE_AUDIO_FILENAME')
+		else:
+			print "\t>> defalt config [%s] is set to [%s]" % ('SUNRISE_AUDIO_FILENAME', config['SUNRISE_AUDIO_FILENAME'])
+
+	# setting default config [MIDMORNING_AUDIO_FILENAME]
+	if not config_default.has_key('MIDMORNING_AUDIO_FILENAME'):
+		config_missing['MIDMORNING_AUDIO_FILENAME'] = True
+	elif config_default['MIDMORNING_AUDIO_FILENAME'] == "":
+		config_missing['MIDMORNING_AUDIO_FILENAME'] = True
+	else:
+		config['MIDMORNING_AUDIO_FILENAME'] = config_default['MIDMORNING_AUDIO_FILENAME']
+		config_missing['MIDMORNING_AUDIO_FILENAME'] = False
+	if DEBUG:
+		if config_missing['MIDMORNING_AUDIO_FILENAME']:
+			print "\t>> default config [%s] is missing or blank" % ('MIDMORNING_AUDIO_FILENAME')
+		else:
+			print "\t>> defalt config [%s] is set to [%s]" % ('MIDMORNING_AUDIO_FILENAME', config['MIDMORNING_AUDIO_FILENAME'])
+
+	# setting default config [MIDAFTERNOON_AUDIO_FILENAME]
+	if not config_default.has_key('MIDAFTERNOON_AUDIO_FILENAME'):
+		config_missing['MIDAFTERNOON_AUDIO_FILENAME'] = True
+	elif config_default['MIDAFTERNOON_AUDIO_FILENAME'] == "":
+		config_missing['MIDAFTERNOON_AUDIO_FILENAME'] = True
+	else:
+		config['MIDAFTERNOON_AUDIO_FILENAME'] = config_default['MIDAFTERNOON_AUDIO_FILENAME']
+		config_missing['MIDAFTERNOON_AUDIO_FILENAME'] = False
+	if DEBUG:
+		if config_missing['MIDAFTERNOON_AUDIO_FILENAME']:
+			print "\t>> default config [%s] is missing or blank" % ('MIDAFTERNOON_AUDIO_FILENAME')
+		else:
+			print "\t>> defalt config [%s] is set to [%s]" % ('MIDAFTERNOON_AUDIO_FILENAME', config['MIDAFTERNOON_AUDIO_FILENAME'])
+
+	# setting default config [SUNSET_AUDIO_FILENAME]
+	if not config_default.has_key('SUNSET_AUDIO_FILENAME'):
+		config_missing['SUNSET_AUDIO_FILENAME'] = True
+	elif config_default['SUNSET_AUDIO_FILENAME'] == "":
+		config_missing['SUNSET_AUDIO_FILENAME'] = True
+	else:
+		config['SUNSET_AUDIO_FILENAME'] = config_default['SUNSET_AUDIO_FILENAME']
+		config_missing['SUNSET_AUDIO_FILENAME'] = False
+	if DEBUG:
+		if config_missing['SUNSET_AUDIO_FILENAME']:
+			print "\t>> default config [%s] is missing or blank" % ('SUNSET_AUDIO_FILENAME')
+		else:
+			print "\t>> defalt config [%s] is set to [%s]" % ('SUNSET_AUDIO_FILENAME', config['SUNSET_AUDIO_FILENAME'])
+
+	# setting default config [DUSK_AUDIO_FILENAME]
+	if not config_default.has_key('DUSK_AUDIO_FILENAME'):
+		config_missing['DUSK_AUDIO_FILENAME'] = True
+	elif config_default['DUSK_AUDIO_FILENAME'] == "":
+		config_missing['DUSK_AUDIO_FILENAME'] = True
+	else:
+		config['DUSK_AUDIO_FILENAME'] = config_default['DUSK_AUDIO_FILENAME']
+		config_missing['DUSK_AUDIO_FILENAME'] = False
+	if DEBUG:
+		if config_missing['DUSK_AUDIO_FILENAME']:
+			print "\t>> default config [%s] is missing or blank" % ('DUSK_AUDIO_FILENAME')
+		else:
+			print "\t>> defalt config [%s] is set to [%s]" % ('DUSK_AUDIO_FILENAME', config['DUSK_AUDIO_FILENAME'])
+
+	# setting default config [LATENIGHT_AUDIO_FILENAME]
+	if not config_default.has_key('LATENIGHT_AUDIO_FILENAME'):
+		config_missing['LATENIGHT_AUDIO_FILENAME'] = True
+	elif config_default['LATENIGHT_AUDIO_FILENAME'] == "":
+		config_missing['LATENIGHT_AUDIO_FILENAME'] = True
+	else:
+		config['LATENIGHT_AUDIO_FILENAME'] = config_default['LATENIGHT_AUDIO_FILENAME']
+		config_missing['LATENIGHT_AUDIO_FILENAME'] = False
+	if DEBUG:
+		if config_missing['LATENIGHT_AUDIO_FILENAME']:
+			print "\t>> default config [%s] is missing or blank" % ('LATENIGHT_AUDIO_FILENAME')
+		else:
+			print "\t>> defalt config [%s] is set to [%s]" % ('LATENIGHT_AUDIO_FILENAME', config['LATENIGHT_AUDIO_FILENAME'])
+
+	# setting default config [OVERLAP_TIME]
+	if not config_default.has_key('OVERLAP_TIME'):
+		config_missing['OVERLAP_TIME'] = True
+	elif config_default['OVERLAP_TIME'] == "":
+		config_missing['OVERLAP_TIME'] = True
+	else:
+		config['OVERLAP_TIME'] = config_default['OVERLAP_TIME']
+		config_missing['OVERLAP_TIME'] = False
+	if DEBUG:
+		if config_missing['OVERLAP_TIME']:
+			print "\t>> default config [%s] is missing or blank" % ('OVERLAP_TIME')
+		else:
+			print "\t>> defalt config [%s] is set to [%s]" % ('OVERLAP_TIME', config['OVERLAP_TIME'])
+
+	# setting default config [AUDIO_FADE_TIME]
+	if not config_default.has_key('AUDIO_FADE_TIME'):
+		config_missing['AUDIO_FADE_TIME'] = True
+	elif config_default['AUDIO_FADE_TIME'] == "":
+		config_missing['AUDIO_FADE_TIME'] = True
+	else:
+		config['AUDIO_FADE_TIME'] = config_default['AUDIO_FADE_TIME']
+		config_missing['AUDIO_FADE_TIME'] = False
+	if DEBUG:
+		if config_missing['AUDIO_FADE_TIME']:
+			print "\t>> default config [%s] is missing or blank" % ('AUDIO_FADE_TIME')
+		else:
+			print "\t>> defalt config [%s] is set to [%s]" % ('AUDIO_FADE_TIME', config['AUDIO_FADE_TIME'])
+
+	# setting default config [DEBUG]
+	if not config_default.has_key('DEBUG'):
+		config_missing['DEBUG'] = True
+	elif config_default['DEBUG'] == "":
+		config_missing['DEBUG'] = True
+	else:
+		config['DEBUG'] = config_default['DEBUG']
+		config_missing['DEBUG'] = False
+	if DEBUG:
+		if config_missing['DEBUG']:
+			print "\t>> default config [%s] is missing or blank" % ('DEBUG')
+		else:
+			print "\t>> defalt config [%s] is set to [%s]" % ('DEBUG', config['DEBUG'])
+
+	# setting default config [AUDIO_CROSSFADE_TIME]
+	if not config_default.has_key('AUDIO_CROSSFADE_TIME'):
+		config_missing['AUDIO_CROSSFADE_TIME'] = True
+	elif config_default['AUDIO_CROSSFADE_TIME'] == "":
+		config_missing['AUDIO_CROSSFADE_TIME'] = True
+	else:
+		config['AUDIO_CROSSFADE_TIME'] = config_default['AUDIO_CROSSFADE_TIME']
+		config_missing['AUDIO_CROSSFADE_TIME'] = False
+	if DEBUG:
+		if config_missing['AUDIO_CROSSFADE_TIME']:
+			print "\t>> default config [%s] is missing or blank" % ('AUDIO_CROSSFADE_TIME')
+		else:
+			print "\t>> defalt config [%s] is set to [%s]" % ('AUDIO_CROSSFADE_TIME', config['AUDIO_CROSSFADE_TIME'])
+
+	# setting default config [start_time]
+	if not config_default.has_key('start_time'):
+		config_missing['start_time'] = True
+	elif config_default['start_time'] == "":
+		config_missing['start_time'] = True
+	else:
+		config['start_time'] = config_default['start_time']
+		config_missing['start_time'] = False
+	if DEBUG:
+		if config_missing['start_time']:
+			print "\t>> default config [%s] is missing or blank" % ('start_time')
+		else:
+			print "\t>> defalt config [%s] is set to [%s]" % ('start_time', config['start_time'])
+
+	# setting default config [stop_time]
+	if not config_default.has_key('stop_time'):
+		config_missing['stop_time'] = True
+	elif config_default['stop_time'] == "":
+		config_missing['stop_time'] = True
+	else:
+		config['stop_time'] = config_default['stop_time']
+		config_missing['stop_time'] = False
+	if DEBUG:
+		if config_missing['stop_time']:
+			print "\t>> default config [%s] is missing or blank" % ('stop_time')
+		else:
+			print "\t>> defalt config [%s] is set to [%s]" % ('stop_time', config['stop_time'])

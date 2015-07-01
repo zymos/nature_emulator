@@ -68,6 +68,25 @@ def get_default_config():
     return config_default
 
 
+####################################################################
+# A boolean checker with some Debug code
+def truth_or_dare2(config_type, param_name, value):
+
+    if  value == "1" or ( re.search('true|on|set|yes', value, re.IGNORECASE) is not None):
+        if DEBUG:
+            print "\t\t>> Config: %s file [%s] is true" % (config_type, param_name)
+        return True
+    elif  value == "0" or ( re.search('false|off|unset|no', value, re.IGNORECASE) is not None):
+        if DEBUG:
+            print "\t>> Config: %s file [%s] is false" % (config_type, param_name)
+        return False
+    else:
+        # print "\t>>   and is not 0/1, off/on, false/true, unset/set" 
+        if DEBUG:
+            print "\t>> Error: %s file [%s] is not true or false" % (config_type, param_name)        
+        return None
+# truth_or_dare2 (end)
+
 
 
 
@@ -151,7 +170,7 @@ def is_false(param):
     else:
         return False
 # is_false (END)
-
+#
 
 
     
@@ -167,9 +186,11 @@ def is_float(value):
 
 
 # check time format, 24-hour clock, HH:MM
-def is_time_format(input):
+def is_time_format(value):
+    if DEBUG:
+        print "\t\t>> is_time_format(%s)" % value
     try:
-        time.strptime(input, '%H:%M')
+        time.strptime(value, '%H:%M')
         return True
     except ValueError:
         return False
@@ -186,36 +207,37 @@ def get_volume(param, value):
         value = float(value)        
         if value > 100: # volume > 100
             if DEBUG:
-                print "\t>> Config error: %s greater than 100%%, setting to 100%%" % (param)
+                print "\t\t>> Config error: %s greater than 100%%, setting to 100%%" % (param)
             return 100.0
         elif value < 0: # volume is negative
             if DEBUG:
-                print "\t>> Config error: %s is negative, setting to 0%%" % (param)
+                print "\t\t>> Config error: %s is negative, setting to 0%%" % (param)
             return 0.0
         else: # volume is good
-            if DEBUG:
-                print "\t>> Config: %s is set to %s%%" % (param, value)
+            # if DEBUG:
+                # print "\t\t>> Config: %s is set to %s%%" % (param, value)
             return value
     else:
         # not a number
         if DEBUG:
-            print "\t>> Config error: %s is not a number, setting to 0%%" % (param)
-        return 0.0
+            print "\t\t>> Config error: %s is not a number, ignoring" % (param)
+        return None
 
+
+
+def hm_to_seconds(t):
+    h, m = [int(i) for i in t.split(':')]
+    return 3600*h + 60*m
 
 
 
 ##################################################################
-# check config paramators for validity, nessessitym and existance
+# This checks values of configs and corrects them
 #
-def get_family_values(config_global, config_user):
-    config = {}
-    config_missing = {}
-    config_user_missing = {}
-    config_global_missing = {}
+def correct_family_values(config_type, config_in):
 
-    
-    params = [  "PRIMARY_AUDIO_DIRECTORY",
+    params = [  "LOCAL_CONFIG_FILE", 
+    "PRIMARY_AUDIO_DIRECTORY",
     "SECONDARY_AUDIO_DIRECTORY",
     "CITY_LOCATION",
     "ENABLE_WIFI",
@@ -227,7 +249,11 @@ def get_family_values(config_global, config_user):
     "ENABLE_FIXED_TIME_MODE",
     "START_OF_THE_DAY_MODE",
     "END_OF_THE_DAY_MODE",
-    "ENABLE_FIXED_LATENIGHT",
+    "ENABLE_DAWN_AUDIO",
+    "ENABLE_MORNING_AUDIO",
+    "ENABLE_MIDDAY_AUDIO",
+    "ENABLE_DUSK_AUDIO",
+    "ENABLE_NIGHT_AUDIO",
     "FIXED_TIME_DAWN",
     "FIXED_TIME_SUNRISE",
     "FIXED_TIME_MIDMORNING",
@@ -236,12 +262,17 @@ def get_family_values(config_global, config_user):
     "FIXED_TIME_DUSK",
     "FIXED_TIME_LATENIGHT",
     "DAWN_AUDIO_FILENAME",
-    "SUNRISE_AUDIO_FILENAME",
-    "MIDMORNING_AUDIO_FILENAME",
-    "MIDAFTERNOON_AUDIO_FILENAME",
-    "SUNSET_AUDIO_FILENAME",
+    "MORNING_AUDIO_FILENAME",
+    "MIDDAY_AUDIO_FILENAME",
+    "EVENING_AUDIO_FILENAME",
     "DUSK_AUDIO_FILENAME",
-    "LATENIGHT_AUDIO_FILENAME",
+    "NIGHT_AUDIO_FILENAME",
+    "DAWN_AUDIO_VOLUME",
+    "MORNING_AUDIO_VOLUME",
+    "MIDDAY_AUDIO_VOLUME",
+    "EVENING_AUDIO_VOLUME",
+    "DUSK_AUDIO_VOLUME",
+    "NIGHT_AUDIO_VOLUME",
     "OVERLAP_TIME",
     "AUDIO_FADE_TIME",
     "DEBUG",
@@ -250,52 +281,63 @@ def get_family_values(config_global, config_user):
     "stop_time"]
 
     #####################################################
-    # Process each parameter for global and user configs
-    # for param in params:
-        # print "config_default['%s'] = '%s'" % (param, config_global[param])
+    # Process each parameter for configs
+    # 
     
-    config_source = {}
+    config_out = {}
     for param in params:
         # global config
-        config_source[param] = 'none'
-        config[param] = ''
-        if not config_global.has_key(param):
-            config_global_missing[param] = True
-        elif config_global[param] == "":
-            config_global_missing[param] = True
+        # config_source[param] = 'none'
+        # config[param] = ''
+        if not config_in.has_key(param):
+            config_out[param] = None
+            if DEBUG:
+                print "\t>> %s config [%s] is missing" % (config_type, param)
+        elif config_in[param] == "" or config_in[param] == "''" or config_in[param] == "\"\"" :
+            config_out[param] = None
+            if DEBUG:
+                    print "\t>> %s config [%s] is blank" % (config_type, param) 
         else:
-            config_global_missing[param] = False
-            config_source[param] = 'GLOBAL'
-            config_global[param] = config_global[param].replace('"', "")
-            # print config[param]
-        # user config
-        if not config_user.has_key(param):
-            config_user_missing[param] = True
-        elif config_user[param] == "":
-            config_user_missing[param] = True
-        else:
-            config_user_missing[param] = False
-            config_source[param] = 'USER'
-            config_user[param] = config_user[param].translate(None, '\"\'')
-        if DEBUG:
-             print "\t>>Config: available parameter [%s]" % (param)   
-             if config_global_missing[param]:
-                print "\t\t>> global config [%s] is missing or blank" % (param)
-             else:
-                print "\t\t>> global config [%s] is set to [%s]" % (param, config_global[param])
-             if config_user_missing[param]:
-                 print "\t\t>> user config [%s] is missing or blank" % (param)
-                 if config_global_missing[param]:
-                     print "\t\t>>Config: No config found for [%s]" % (param)
-                 else:
-                        print "\t\t>>Config: using Default config for [%s]" % (param)
-             else:
-                 print "\t\t>> user config [%s] is set to [%s]" % (param, config_user[param])
-                 print "\t\t>>Config: using User config for [%s]" % (param)
-          
+            config_out[param] = config_in[param].translate(None, '\"\'')
+            if DEBUG:
+                print "\t>> %s config [%s]=[%s]" % (config_type, param, config_out[param])   
+    # e
+  
 
     if DEBUG:
         print "\t>> Scripts location: [%s]" % (get_script_path())
+
+
+
+
+    ###############################################
+    # LOCAL_CONFIG_FILE
+    #
+    param = 'LOCAL_CONFIG_FILE'
+    
+    if config_type == "LOCAL":
+        config_out[param] = None
+        #ignoring
+    elif config_out[param] is None:
+        if DEBUG:
+           print "\t>> %s config: %s is missing" % (config_type, param)
+    # checking relative path
+    elif os.path.isfile(os.path.normpath(os.path.join(get_script_path(), config_out[param]))):
+        config_out[param] = os.path.normpath(os.path.join(get_script_path(), config_out[param]))
+        if DEBUG:
+            print "\t>> %s config:  %s is a relative path" % (config_type, param)
+            print "\t>>   %s" % (config_out[param])
+    #checking absolute path
+    elif os.path.isfile(os.path.normpath(config_out[param])):
+        config_out[param] = os.path.normpath(config_out[param])
+        if DEBUG:
+            print "\t>> %s config:  %s is an absolute path" % (config_type, param)
+            print "\t>>   %s" % (config_out[param])
+    else:
+        config_out[param] = None
+        if DEBUG:
+            print "\t>> %s config: %s does not exist" % (config_type, param)
+
 
 
 
@@ -303,84 +345,28 @@ def get_family_values(config_global, config_user):
     # Audio directories
     #
     # Process AUDIO_DIR
-    param = 'PRIMARY_AUDIO_DIRECTORY'
-    if DEBUG:
-        print "\t>> config: [%s]" % (param)
-        print "\t\t>> config: config [%s]" % (config[param])
-        print "\t\t>> config_user_missing: [%s]" % (config_user_missing[param])
-        print "\t\t>> config_user: [%s]" % (config_user[param])
-        print "\t\t>> config_global_missing: [%s]" % (config_global_missing[param])
-        print "\t\t>> config_global: [%s]" % (config_global[param])      
-        print " os.path.normpath(os.path.join(get_script_path(), config_user[param]))) %s" % (os.path.normpath(os.path.join(get_script_path(), config_user[param])))
-
     params = ['PRIMARY_AUDIO_DIRECTORY', 'SECONDARY_AUDIO_DIRECTORY']
     for param in params:
         # config[param] = config[param]
         # config[param] = config[param].translate(None, '\"\'')
         if DEBUG:
             print "\t>> config: [%s]" % (param)
-            print "\t\t>> config: source [%s]" % (config_source[param])
-            print "\t\t>> config: = %s" % (config[param])
-        if config_user_missing[param] and config_global_missing[param]:
-            if param == 'PRIMARY_AUDIO_DIRECTORY':
-                #fatal
-                print "%s: Fatal error: config variable, [%s] is required" % (time.strftime("%H:%M:%S"), param)
-                sys.exit(1)
-            else: #SECONDARY_AUDIO_DIR
-                print "%s: Config: SECONDARY_AUDIO_DIRECTORY is missing, disabling" % (time.strftime("%H:%M:%S"))
-                config[param] = None
-        # checking USER config, relative path
-        elif os.path.isdir(os.path.normpath(os.path.join(get_script_path(), config_user[param]))) and not config_user_missing[param]:
-            config[param] = os.path.normpath(os.path.join(get_script_path(), config_user[param]))
-            print "%s: Config: using %s config for [%s]" % (time.strftime("%H:%M:%S"), 'USER', param)
-            print "\t>>   %s" % (config[param])
-        #checking USER config, absolute path
-        elif os.path.isdir(os.path.normpath(config_user[param])) and not config_user_missing[param]:
-            config[param] = os.path.normpath(config_user[param])
-            print "%s: Config: using %s config for [%s]" % (time.strftime("%H:%M:%S"), 'USER', param)
-            print "\t>>   %s" % (config[param])
-        # checking GLOBAL config, relative path
-        elif os.path.isdir(os.path.normpath(os.path.join(get_script_path(), config_global[param])))and not config_global_missing[param]:
-            config[param] = os.path.normpath(os.path.join(get_script_path(), config_global[param]))
-            print "%s: Config: using %s config for [%s]" % (time.strftime("%H:%M:%S"),'GLOBAL', param)
-            print "\t>>   %s" % (config[param])
-        #checking GLOBAL config, absolute path
-        elif os.path.isdir(os.path.normpath(config_global[param])) and not config_global_missing[param]:
-            config[param] = os.path.normpath(config_global[param])
-            print "%s: Config: using %s config for [%s]" % (time.strftime("%H:%M:%S"),'GLOBAL', param)
-            print "\t>>   %s" % (config[param])
-        else:
-            if param == 'PRIMARY_AUDIO_DIRECTORY':
-                #fatal
-                print "%s: Fatal error: no valid dir found for [%s]" % (time.strftime("%H:%M:%S"), param)
-                sys.exit(1)
-            else: #SECONDARY_AUDIO_DIR
-                print "%s: Config: no valid dir found for [SECONDARY_AUDIO_DIRECTORY], disabling" % (time.strftime("%H:%M:%S"))
-                config[param] = None
-       
+        if config_out[param] is None:
+            if DEBUG:
+               print "\t>> %s config: %s is missing" % (config_type, param)
+        # checking relative path
+        elif os.path.isdir(os.path.normpath(os.path.join(get_script_path(), config_out[param]))):
+            config_out[param] = os.path.normpath(os.path.join(get_script_path(), config_out[param]))
+            if DEBUG:
+                print "\t>> %s config:  %s is a relative path" % (config_type, param)
+                print "\t>>   %s" % (config_out[param])
+        #checking absolute path
+        elif os.path.isdir(os.path.normpath(config_out[param])):
+            config_out[param] = os.path.normpath(config_out[param])
+            if DEBUG:
+                print "\t>> %s config:  %s is an absolute path" % (config_type, param)
+                print "\t>>   %s" % (config_out[param])
 
-        # elif (config_source[param] == "user") and os.path.isdir(os.path.join(get_script_path(), config_global[param])):
-            # config[param] = os.path.join(get_script_path(), config_global[param])
-            # print "  >> Config: using %s config for [%s]" % (config_source[param], param)    
-            # print "    >> %s" % (config[param])
-        # elif (config_source[param] == "user") and os.path.isdir(config_global[param]):
-            # config[param] = config_global[param]
-            # print "  >> Config: using %s config for [%s]" % (config_source[param], param)    
-            # print "    >> %s" % (config[param])
-        # elif os.path.isdir(config[param]):
-                # config[param] = config[param]
-                # print "  >> Config: using %s config for [%s]" % (config_source[param], param)
-                # print "    >> %s" % (config[param])
-        # else:
-            # print "%s: Fatal error: config variable, [%s] is not a directory" % (time.strftime("%H:%M:%S"), param)
-            # print "  >> %s" % (config[param])
-            # sys.exit(1)
-
-
-
-    #############################################
-    # WIFI todo
-    param = "ENABLE_WIFI"
 
 
 
@@ -388,62 +374,292 @@ def get_family_values(config_global, config_user):
     # Background sound
     #
     param = 'BACKGROUND_SOUND_ENABLE'
-    config[param] = truth_or_dare(param, config_global[param], config_user[param])
-
+    config_out[param] = truth_or_dare2(config_type, param, config_out[param])
     # Background sound enable
-    if config['BACKGROUND_SOUND_ENABLE']:
+    if config_out['BACKGROUND_SOUND_ENABLE']:
         # background sound filename
-        param = 'BACKGROUND_SOUND_FILENAME' 
-        if DEBUG:
-            print "\t>> Background sound enabling"
-        if not get_audiofile_location(param, config_user_missing[param], config_global_missing[param], config_user[param], config_global[param], config['PRIMARY_AUDIO_DIRECTORY'], config['SECONDARY_AUDIO_DIRECTORY']) == None:
+        param = 'BACKGROUND_SOUND_FILENAME'
+        # Dont check file location yet
+        # if not get_audiofile_location2(config_type, param, config_out[param], config_out['PRIMARY_AUDIO_DIRECTORY'], config_out['SECONDARY_AUDIO_DIRECTORY']) == None:
             # background sound filename is valid
-            config[param] = get_audiofile_location(param, config_user_missing[param], config_global_missing[param], config_user[param], config_global[param], config['PRIMARY_AUDIO_DIRECTORY'], config['SECONDARY_AUDIO_DIRECTORY'])
-            print "%s: Config: BACKGROUND_SOUND is enabled" % (time.strftime("%H:%M:%S"))
-            print "%s: Config: BACKGROUND_SOUND_FILENAME is " % (time.strftime("%H:%M:%S"))
-            print "\t %s" % (config['BACKGROUND_SOUND_FILENAME'])
-
+            # config_out[param] = get_audiofile_location2(config_type, param, config_out[param], config_out['PRIMARY_AUDIO_DIRECTORY'], config_out['SECONDARY_AUDIO_DIRECTORY'])
+            # print "\t>> %s config: BACKGROUND_SOUND is enabled" % (config_type)
+            # print "\t>> %s Config: BACKGROUND_SOUND_FILENAME is " % (config_type)
+            # print "\t %s" % (config_out['BACKGROUND_SOUND_FILENAME'])
+        if is_audiofile(config_out[param]):
             # Setting BACKGROUND_SOUND_VOLUME
+            if DEBUG:
+                print "\t>> %s config, BACKGROUND_SOUND_FILENAME is [%s]" % (config_type, config_out[param])
             param = 'BACKGROUND_SOUND_VOLUME'
-            if is_float(config_user[param]) and not config_user_missing[param]:
+            if is_float(config_out[param]):
                 # USER config's VOLUME is a float
-                config[param] = get_volume(param, config_user[param])
-                print "%s: Config: BACKGROUND_SOUND_VOUME is [%s%%] from USER config" % (time.strftime("%H:%M:%S"), config[param])
-            elif is_float(config_global[param]) and not config_global_missing[param]:
-                # GLOBAL config's VOLUME is a float
-                config[param] = get_volume(param, config_global[param])
-                print "%s: Config: BACKGROUND_SOUND_VOLUME is [%s%%] from GLOBAL config" % (time.strftime("%H:%M:%S"), config[param])
+                config_out[param] = get_volume(param, config_out[param])
+                if DEBUG:
+                    print "\t>> %s config, BACKGROUND_SOUND_VOUME is [%s%%]" % (config_type, config_out[param])
             else:
                 # BACKGROUND_SOUND_VOLUME is missing or invalid
-                print "%s: Config error: BACKGROUND_SOUND_VOLUME is invalid, BACKGROUND_SOUND is disabled" % (time.strftime("%H:%M:%S"))
-                config['BACKGROUND_SOUND_ENABLE'] = False
-        else: 
-            #file not found, disabling
-            print "%s: Config error: BACKGROUND_SOUND_FILENAME is invalid, BACKGROUND_SOUND is disabled" % (time.strftime("%H:%M:%S"))
-            config['BACKGROUND_SOUND_ENABLE'] = False
-    else: 
-        # background sound disabled
-        print "%s: Config: BACKGROUND_SOUND is disabled" % (time.strftime("%H:%M:%S"))
+                if DEBUG:
+                    print "\t>> %s config: error: BACKGROUND_SOUND_VOLUME is invalid, BACKGROUND_SOUND is disabled" % (config_type)
+                config_out['BACKGROUND_SOUND_ENABLE'] = False
+                config_out['BACKGROUND_SOUND_FILENAME'] = None
+                config_out['BACKGROUND_SOUND_VOLUME'] = None
+        else: # file not mp3/wav/ogg
+            if DEBUG:
+                print "\t>> %s config: error: BACKGROUND_SOUND_VOLUME is not wav/ogg/mp3, BACKGROUND_SOUND is disabled" % (config_type)
+            config_out['BACKGROUND_SOUND_ENABLE'] = False
+            config_out['BACKGROUND_SOUND_FILENAME'] = None
+            config_out['BACKGROUND_SOUND_VOLUME'] = None
+    else: # BACKGROUND_SOUND_ENABLE is False
+        if DEBUG:
+            print "\t>> %s config: error: BACKGROUND_SOUND_VOLUME is not wav/ogg/mp3, BACKGROUND_SOUND is disabled" % (config_type)
+        config_out['BACKGROUND_SOUND_ENABLE'] = False
+        config_out['BACKGROUND_SOUND_FILENAME'] = None
+        config_out['BACKGROUND_SOUND_VOLUME'] = None
 
-    
-    ############################################
-    # Times of day mode
+
+
+    #################################################################
+    # TIMES_OF_DAY modes
     #
+
+    # MODES: checking TIME_OF_DAY - MODEs
     param = 'ENABLE_FIXED_TIME_MODE'
-    config[param] = truth_or_dare(param, config_global[param], config_user[param])
+    config_out[param] = truth_or_dare2(config_type, param, config_out[param])
 
-    if config[param]:
+    param = 'ENABLE_DAWN_AUDIO'
+    config_out[param] = truth_or_dare2(config_type, param, config_out[param])
+
+    param = 'ENABLE_MORNING_AUDIO'
+    config_out[param] = truth_or_dare2(config_type, param, config_out[param])   
+
+    param = 'ENABLE_MIDDAY_AUDIO'
+    config_out[param] = truth_or_dare2(config_type, param, config_out[param])
+
+    param = 'ENABLE_DUSK_AUDIO'
+    config_out[param] = truth_or_dare2(config_type, param, config_out[param])
+
+    param = 'ENABLE_NIGHT_AUDIO'
+    config_out[param] = truth_or_dare2(config_type, param, config_out[param])    
+
+    check_times = False
+    check_time_error = False
+    param = 'START_OF_THE_DAY_MODE'
+    if config_out[param] is not None:
+        if re.search('fixed', config_out[param], re.IGNORECASE) is not None:            
+            config_out[param] = 'fixed'
+            check_times = True
+        elif re.search('dawn', config_out[param], re.IGNORECASE) is not None:            
+            config_out[param] = 'dawn'
+        elif re.search('sunrise', config_out[param], re.IGNORECASE) is not None:            
+            config_out[param] = 'sunrise'
+        else:
+            config_out[param] = None
+
+    param = 'END_OF_THE_DAY_MODE'
+    if config_out[param] is not None:
+        if re.search('fixed', config_out[param], re.IGNORECASE) is not None:            
+            config_out[param] = 'fixed'
+            check_times = True
+        elif re.search('dawn', config_out[param], re.IGNORECASE) is not None:            
+            config_out[param] = 'dusk'
+        elif re.search('sunrise', config_out[param], re.IGNORECASE) is not None:            
+            config_out[param] = 'sunset'
+        elif re.search('latenight', config_out[param], re.IGNORECASE) is not None:            
+            config_out[param] = 'latenight'
+
+        else:
+            config_out[param] = None
+
+
+    # Checking FIXED modes with TIMES
+    # check_times = False
+    if config_out['ENABLE_FIXED_TIME_MODE'] is None:
+        # ENABLE_FIXED_TIME_MODE is not true or false so diabling all 
+        # time mode valiables
+        if DEBUG:
+            print "\t>> %s config, ENABLE_FIXED_TIME_MODE is invalid" % (config_type)
+            print "\t>> %s config, disabling START_OF_THE_DAY_MODE, END_OF_THE_DAY_MODE, ENABLE_FIXED_LATENIGHT, FIXED_TIME_DAWN, FIXED_TIME_SUNRISE, FIXED_TIME_MIDMORNING, FIXED_TIME_MIDAFTERNOON, FIXED_TIME_SUNSET, FIXED_TIME_DUSK, FIXED_TIME_LATENIGHT" % (config_type)
+        config_out['START_OF_THE_DAY_MODE'] = None
+        config_out['END_OF_THE_DAY_MODE'] = None
+        config_out['ENABLE_FIXED_LATENIGHT'] = None
+        config_out['FIXED_TIME_DAWN'] = None
+        config_out['FIXED_TIME_SUNRISE'] = None
+        config_out['FIXED_TIME_MIDMORNING'] = None
+        config_out['FIXED_TIME_MIDAFTERNOON'] = None
+        config_out['FIXED_TIME_SUNSET'] = None
+        config_out['FIXED_TIME_DUSK'] = None
+        config_out['FIXED_TIME_LATENIGHT'] = None
+        # disable = True
+        check_times = False
+    elif config_out['ENABLE_FIXED_TIME_MODE']:
+        # ENABLE_FIXED_TIME_MODE is true, checking fixed times_of_day
+        config_out['START_OF_THE_DAY_MODE'] = None
+        config_out['END_OF_THE_DAY_MODE'] = None
+        config_out['ENABLE_FIXED_LATENIGHT'] = None
+        # disable = False
+        check_times = True
+        # Check is each of the FIXED_TIME_* are valid formats
+    else: # FIXED_TIME_MODE is false
+        if config_out['START_OF_THE_DAY_MODE'] == "fixed":
+            # disable = False
+            check_times = True
+        if config_out['END_OF_THE_DAY_MODE'] == "fixed":
+            # disable = False
+            check_times = True
+        # config_out['ENABLE_FIXED_TIME_MODE'] = False
+        
+
+    ##############################    
+    # TIMES: checking FIXED_TIME_*
+    # check_times_error = False
+    if check_times: # checking times is needed
+        check_times_error = False
         param = 'FIXED_TIME_DAWN'
+        if not is_time_format(config_out[param]):
+            check_times_error = True
+            if DEBUG:
+                print "\t>> %s config, %s time format is invalid" % (config_type, param)
         param = 'FIXED_TIME_SUNRISE'
+        if not is_time_format(config_out[param]):
+            check_times_error = True
+            if DEBUG:
+                print "\t>> %s config, %s time format is invalid" % (config_type, param)
         param = 'FIXED_TIME_MIDMORNING'
+        if not is_time_format(config_out[param]):
+            check_times_error = True
+            if DEBUG:
+                print "\t>> %s config, %s time format is invalid" % (config_type, param)
         param = 'FIXED_TIME_MIDAFTERNOON'
+        if not is_time_format(config_out[param]):
+            check_times_error = True
+            if DEBUG:
+                print "\t>> %s config, %s time format is invalid" % (config_type, param)
         param = 'FIXED_TIME_SUNSET'
+        if not is_time_format(config_out[param]):
+            check_times_error = True
+            if DEBUG:
+                print "\t>> %s config, %s time format is invalid" % (config_type, param)
         param = 'FIXED_TIME_DUSK'
+        if not is_time_format(config_out[param]):
+            check_times_error = True
+            if DEBUG:
+                print "\t>> %s config, %s time format is invalid" % (config_type, param)
         param = 'FIXED_TIME_LATENIGHT'
+        if not is_time_format(config_out[param]):
+            check_times_error = True
+            if DEBUG:
+                print "\t>> %s config, %s time format is invalid" % (config_type, param)
+        # Check if FIXED_TIME_*, times_of_day, are in the correct order
+        # and are not the same
+        if not check_times_error:
+            if hm_to_seconds(config_out['FIXED_TIME_DAWN']) > hm_to_seconds(config_out['FIXED_TIME_SUNRISE']) or hm_to_seconds(config_out['FIXED_TIME_SUNRISE']) > hm_to_seconds(config_out['FIXED_TIME_MIDMORNING']) or hm_to_seconds(config_out['FIXED_TIME_MIDMORNING']) > hm_to_seconds(config_out['FIXED_TIME_MIDAFTERNOON']) or hm_to_seconds(config_out['FIXED_TIME_MIDAFTERNOON']) > hm_to_seconds(config_out['FIXED_TIME_SUNSET']) or hm_to_seconds(config_out['FIXED_TIME_SUNSET']) > hm_to_seconds(config_out['FIXED_TIME_DUSK']) or hm_to_seconds(config_out['FIXED_TIME_DUSK']) > hm_to_seconds(config_out['FIXED_TIME_LATENIGHT']):
+                check_times_error = True
+                if DEBUG:
+                    print "\t>> %s config: error times of day are out of order" % (config_type)
+
+    if check_times_error: # there is a error in time, call dr who
+        config_out['ENABLE_FIXED_TIME_MODE'] = None
+        config_out['START_OF_THE_DAY_MODE'] = None
+        config_out['END_OF_THE_DAY_MODE'] = None
+        config_out['FIXED_TIME_DAWN'] = None
+        config_out['FIXED_TIME_SUNRISE'] = None
+        config_out['FIXED_TIME_MIDMORNING'] = None
+        config_out['FIXED_TIME_MIDAFTERNOON'] = None
+        config_out['FIXED_TIME_SUNSET'] = None
+        config_out['FIXED_TIME_DUSK'] = None
+        config_out['FIXED_TIME_LATENIGHT'] = None
+        if DEBUG:
+            print "\t>> %s config: error found, ignoring ENABLE_FIXED_TIME_MODE, START_OF_THE_DAY_MODE, END_OF_THE_DAY_MODE, FIXED_TIME_DAWN, FIXED_TIME_SUNRISE, FIXED_TIME_MIDMORNING, FIXED_TIME_MIDAFTERNOON, FIXED_TIME_SUNSET, FIXED_TIME_DUSK, and FIXED_TIME_LATENIGHT for %s config" % (config_type, config_type)
+
+    else: # no time errors found, format ok, order ok
+        if DEBUG:
+            print "\t>> %s config: %s OK [%s]" % (config_type, 'FIXED_TIME_DAWN', config_out['FIXED_TIME_DAWN'])
+            print "\t>> %s config: %s OK [%s]" % (config_type, 'FIXED_TIME_SUNRISE', config_out['FIXED_TIME_SUNRISE'])
+            print "\t>> %s config: %s OK [%s]" % (config_type, 'FIXED_TIME_MIDMORNING', config_out['FIXED_TIME_MIDMORNING'])
+            print "\t>> %s config: %s OK [%s]" % (config_type, 'FIXED_TIME_MIDAFTERNOON', config_out['FIXED_TIME_MIDAFTERNOON'])
+            print "\t>> %s config: %s OK [%s]" % (config_type, 'FIXED_TIME_SUNSET', config_out['FIXED_TIME_SUNSET'])
+            print "\t>> %s config: %s OK [%s]" % (config_type, 'FIXED_TIME_DUSK', config_out['FIXED_TIME_DUSK'])
+            print "\t>> %s config: %s OK [%s]" % (config_type, 'FIXED_TIME_LATENIGHT', config_out['FIXED_TIME_LATENIGHT'])
+
+    ########################
+    # Checking [Filenames]
+
+    if not is_audiofile(config_out['DAWN_AUDIO_FILENAME']):
+        config_out['DAWN_AUDIO_FILENAME'] = None
+        if DEBUG:
+            print "\t>> %s config: error %s is not an mp3, ogg or wav" % (config_type, 'DAWN_AUDIO_FILENAME')
+    if not is_audiofile(config_out['MORNING_AUDIO_FILENAME']):
+        config_out['MORNING_AUDIO_FILENAME'] = None
+        if DEBUG:
+            print "\t>> %s config: error %s is not an mp3, ogg or wav" % (config_type, 'MORNING_AUDIO_FILENAME')
+    if not is_audiofile(config_out['MIDDAY_AUDIO_FILENAME']):
+        config_out['MIDDAY_AUDIO_FILENAME'] = None
+        if DEBUG:
+            print "\t>> %s config: error %s is not an mp3, ogg or wav" % (config_type, 'MIDDAY_AUDIO_FILENAME')
+    if not is_audiofile(config_out['EVENING_AUDIO_FILENAME']):
+        config_out['EVENING_AUDIO_FILENAME'] = None
+        if DEBUG:
+            print "\t>> %s config: error %s is not an mp3, ogg or wav" % (config_type, 'EVENING_AUDIO_FILENAME')
+    if not is_audiofile(config_out['DUSK_AUDIO_FILENAME']):
+        config_out['DUSK_AUDIO_FILENAME'] = None
+        if DEBUG:
+            print "\t>> %s config: error %s is not an mp3, ogg or wav" % (config_type, 'DUSK_AUDIO_FILENAME')
+    if not is_audiofile(config_out['NIGHT_AUDIO_FILENAME']):
+        config_out['NIGHT_AUDIO_FILENAME'] = None
+        if DEBUG:
+            print "\t>> %s config: error %s is not an mp3, ogg or wav" % (config_type, 'NIGHT_AUDIO_FILENAME')
 
 
-    return config
-# def get_family_values (END)
+    #############################
+    # Check individual volumes
+    param = 'DAWN_AUDIO_VOLUME' 
+    config_out['param'] = get_volume(param, config_out[param]) 
+    if DEBUG: 
+        if config_out[param] is None: 
+            print "\t>> %s config, error %s invalid" % (config_type, param) 
+        else: 
+            print "\t>> %s config, %s [%s%%]" % (config_type, param, config_out[param])
+    param = 'MORNING_AUDIO_VOLUME' 
+    config_out['param'] = get_volume(param, config_out[param]) 
+    if DEBUG: 
+        if config_out[param] is None: 
+            print "\t>> %s config, error %s invalid" % (config_type, param) 
+        else: 
+            print "\t>> %s config, %s [%s%%]" % (config_type, param, config_out[param])
+    param = 'MIDDAY_AUDIO_VOLUME' 
+    config_out['param'] = get_volume(param, config_out[param]) 
+    if DEBUG: 
+        if config_out[param] is None: 
+            print "\t>> %s config, error %s invalid" % (config_type, param) 
+        else: 
+            print "\t>> %s config, %s [%s%%]" % (config_type, param, config_out[param])
+    param = 'EVENING_AUDIO_VOLUME' 
+    config_out['param'] = get_volume(param, config_out[param]) 
+    if DEBUG: 
+        if config_out[param] is None: 
+            print "\t>> %s config, error %s invalid" % (config_type, param) 
+        else: 
+            print "\t>> %s config, %s [%s%%]" % (config_type, param, config_out[param])
+    param = 'DUSK_AUDIO_VOLUME' 
+    config_out['param'] = get_volume(param, config_out[param]) 
+    if DEBUG: 
+        if config_out[param] is None: 
+            print "\t>> %s config, error %s invalid" % (config_type, param) 
+        else: 
+            print "\t>> %s config, %s [%s%%]" % (config_type, param, config_out[param])
+    param = 'NIGHT_AUDIO_VOLUME' 
+    config_out['param'] = get_volume(param, config_out[param]) 
+    if DEBUG: 
+        if config_out[param] is None: 
+            print "\t>> %s config, error %s invalid" % (config_type, param) 
+        else: 
+            print "\t>> %s config, %s [%s%%]" % (config_type, param, config_out[param])
+
+
+    return config_out
+# correct_family_values (END)
+
+
 
 
 
@@ -479,6 +695,42 @@ def check_audiofile_existance(file_name, primary_dir, secondary_dir):
     else:
         return None
 # def check_audiofile_existance (END)
+
+
+
+#####################################################
+# Checks an audiofile's existance, if its an mp3/ogg/wav, 
+# and it returns its full path
+def get_audiofile_location2(config_type, param, value, primary_audio_directory, secondary_audio_directory):
+
+
+    if value is not None: # it's not blank
+        if is_audiofile(value): # check if actually mp3/wav/ogg
+            if DEBUG:
+                print "\t\t>> %s config, [%s] is an mp3, wav or ogg" % (config_type, param)
+            if check_audiofile_existance(value, primary_audio_directory, secondary_audio_directory) is not None: # check if file exists
+                audiofile_location = check_audiofile_existance(value, primary_audio_directory, secondary_audio_directory)
+                if DEBUG:
+                    print "\t\t>> %s config, [%s] is: " % (config_type, param)
+                    print "\t\t>>  : %s" % (audiofile_location)
+                return audiofile_location # you are a winner
+            else: # file DNE
+                if DEBUG:
+                    print "\t\t>> %s config, [%s] not found" % (config_type, param)
+                return None
+        else: # not an mp3/wav/ogg
+            if DEBUG:
+                print "\t\t>> %s config, [%s] is not a wav/mp3/ogg file" % (config_type, param)
+            return None
+    # Trying GLOBAL config, USER config failed
+    else:
+        if DEBUG:
+             print "\t\t\t>> %s config, [%s] is blank or missing" % (config_type, param)
+
+        return None
+# get_audiofile_location2 (END)
+
+
 
 
 
@@ -614,7 +866,7 @@ def configure():
     # Check Values
     #
     # defaults are not checked
-    config_global = check_family_values('GLOBAL', config_global)
+    config_global = correct_family_values('GLOBAL', config_global)
     # config = get_family_values(config_global,config_user)
 
     # # config_user_filename = config_default['LOCAL_CONFIG_FILE']

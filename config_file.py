@@ -1,0 +1,120 @@
+#!/usr/bin/env python
+
+
+
+# Main Configs
+
+AUDIO_DIRECTORY = ""
+    # location of audio files: full path for directory
+
+CITY_LOCATION = "Denver"
+    # see: 
+
+
+####################
+# Background sound
+BACKGROUND_SOUND_ENABLE = True
+    # Will play the following file 24h a day (True or False)
+BACKGROUND_SOUND_FILENAME = '13_Streamside_Songbirds.ogg'
+    # recomended: rain, waves, wind
+BACKGROUND_SOUND_VOLUME = 0.7
+    # Volume for the background sound (0.0 min - 1.0 max)
+
+######################################
+# Definition for times of the day
+#
+# Division of times of day
+# Beginning of day>>
+#   dawn > morning > midday > evening > dusk > night
+# <<End of day
+# 
+# dawn: twilight till sunrise example(05:00 to 05:40)
+#       twilight = sun 18 degrees below the horizon
+#       sunrise = sunrise
+# morning: sunrise till midmorning example(5:45 to 10:00)
+#       sunrise = sunrise
+#       midmorning = (12:00 - sunrise) / 2
+# midday: midmorning till midafternoon example(10:00 to 15:00
+#       midmorning = (12:00 - sunrise) / 2
+#       midafternoon = (sunset - 12:00) / 2
+# evening: midafternoon to sunset, example(15:00 to 20:15)
+#       midafternoon: (sunset - 12:00) / 2
+#       sunset = sunset
+# dusk: sunset till dusk, example(20:15 to 20:45)
+#       sunset = sunset
+#       dusk =  sun 18 degrees below the horizon
+# night: dusk till latenight, example(20:45 to 22:00)
+#       dusk =  sun 18 degrees below the horizon
+#       latenight = (24:00 - sunset) / 2
+#
+# Fixed times of the day
+
+###############################
+# Time of day Modes
+# 
+ENABLE_FIXED_TIME_MODE = True
+    # if True "start_of_day" and "end_of_day" is set to "fixed"
+    # True or False
+START_OF_THE_DAY_MODE = "fixed" # options "fixed", "dawn", "sunrise"
+    # if start of day is "fixed", set "dawn" and "sunrise" times
+END_OF_THE_DAY_MODE = "fixed" 
+    # options "fixed", "sunset", "dusk", "latenight"
+    # if end of day is "fixed", set "dawn" and "sunrise" times
+    # if sunset, audio will end at sunset
+    # if dusk, audio will end at dusk
+    # if latenight, audio will end a latenight
+ENABLE_FIXED_LATENIGHT = True
+    # if mode is "fixed" this allows you to disable audio after dusk
+    # True or False
+
+##################################
+# Times of day for "fixed" mode
+# Time format: HH:MM in 24h clock, example 22:00 is 10pm
+FIXED_TIME_DAWN = "05:00"
+FIXED_TIME_SUNRISE = "05:45"
+FIXED_TIME_MIDMORNING = "10:00"
+FIXED_TIME_MIDAFTERNOON = "15:00"
+FIXED_TIME_SUNSET = "20:15"
+FIXED_TIME_DUSK = "20:45"
+FIXED_TIME_LATENIGHT = "22:00"
+
+#####################
+# Audio Filenames
+# mp3, wav or ogg files
+DAWN_AUDIO_FILENAME = '13_Streamside_Songbirds.ogg'
+    # recomended: light bird sounds
+SUNRISE_AUDIO_FILENAME = '13_Streamside_Songbirds.ogg'
+    # recomended: moderate bird sounds
+MIDMORNING_AUDIO_FILENAME = '13_Streamside_Songbirds.ogg'
+    # recomended: light bird sounds
+MIDAFTERNOON_AUDIO_FILENAME = '13_Streamside_Songbirds.ogg'
+    # recomended: moderate birds sounds, rain, storms
+SUNSET_AUDIO_FILENAME = '13_Streamside_Songbirds.ogg'
+    # recomended: crickets, frogs, 
+DUSK_AUDIO_FILENAME = '13_Streamside_Songbirds.ogg'
+    # recomended: crickets, frogs
+LATENIGHT_AUDIO_FILENAME = '13_Streamside_Songbirds.ogg'
+    # recomended: owls, coyotes, wolves
+
+
+#########################
+# Optional
+#
+OVERLAP_TIME = 120 
+    # overlap time between files, between times of day (seconds)
+
+AUDIO_FADE_TIME = 20 
+    # fade in/out time for each audio file (seconds)
+
+DEBUG = True
+    # DEBUG = False
+            # enable more verbose output for debuging (True or False)
+
+
+# Old Configs
+AUDIO_CROSSFADE_TIME = 2000 # time for audio crossfade (ms)
+# init_start_time_sec = 1
+start_time = "13:36" # HH:MM
+stop_time = "14:32" # HH:MM
+
+
